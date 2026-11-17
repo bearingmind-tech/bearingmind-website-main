@@ -1,0 +1,90 @@
+import { CogIcon } from "@sanity/icons/Cog";
+import { defineArrayMember, defineField, defineType } from "sanity";
+import { str, strList, txt } from "./helpers";
+
+export const siteSettings = defineType({
+  name: "siteSettings",
+  title: "Website settings",
+  type: "document",
+  icon: CogIcon,
+  groups: [
+    { name: "contact", title: "Contact", default: true },
+    { name: "seo", title: "Google & AI search" },
+    { name: "menu", title: "Menu & footer" },
+    { name: "founder", title: "Founder (for Google)" },
+  ],
+  fields: [
+    defineField({ ...str("practiceName", "Short name"), group: "contact" }),
+    defineField({ ...str("legalName", "Full business name"), group: "contact" }),
+    defineField({ name: "siteUrl", title: "Website address", type: "url", group: "seo" }),
+    defineField({ name: "phone", title: "Phone (with country code)", type: "string", group: "contact", description: "e.g. +91 9482223786" }),
+    defineField({ name: "phoneDisplay", title: "Phone as shown on the site", type: "string", group: "contact" }),
+    defineField({ name: "whatsapp", title: "WhatsApp number (digits only)", type: "string", group: "contact", description: "e.g. 919482223786" }),
+    defineField({ name: "email", title: "Email", type: "string", group: "contact" }),
+    defineField({
+      name: "address",
+      title: "Address",
+      type: "object",
+      group: "contact",
+      fields: [
+        str("street", "Street"),
+        str("locality", "City"),
+        str("region", "State"),
+        str("postalCode", "PIN code"),
+        str("country", "Country code", "IN for India"),
+        str("landmark", "Landmark"),
+      ],
+    }),
+    defineField({ name: "mapUrl", title: "Google Maps link", type: "url", group: "contact" }),
+    defineField({
+      name: "geo",
+      title: "Map pin",
+      description: "Latitude and longitude of the practice, for Google Maps and local search. Copy them from Google Maps (right-click the pin).",
+      type: "object",
+      group: "contact",
+      fields: [
+        { name: "lat", title: "Latitude", type: "number" },
+        { name: "lng", title: "Longitude", type: "number" },
+      ],
+    }),
+    defineField({ ...str("seoTitle", "Page title in Google"), group: "seo" }),
+    defineField({ ...txt("seoDescription", "Description in Google", 3), group: "seo" }),
+    defineField({ ...str("ogTitle", "Title when shared on WhatsApp / LinkedIn"), group: "seo" }),
+    defineField({ ...txt("ogDescription", "Description when shared", 2), group: "seo" }),
+    defineField({ ...txt("schemaDescription", "Practice description for Google and AI assistants", 3), group: "seo" }),
+    defineField({ ...strList("areaServed", "Areas served"), group: "seo" }),
+    defineField({ ...strList("knowsAbout", "Topics of expertise"), group: "seo" }),
+    defineField({
+      name: "sameAs",
+      title: "Profiles elsewhere",
+      description: "Google Business Profile, LinkedIn, Practo, Justdial, Instagram… Add each full link.",
+      type: "array",
+      group: "seo",
+      of: [defineArrayMember({ type: "url" })],
+    }),
+    defineField({
+      name: "founder",
+      title: "Founder",
+      type: "object",
+      group: "founder",
+      fields: [str("name", "Name"), str("jobTitle", "Job title"), strList("credentials", "Credentials"), str("memberOf", "Member of")],
+    }),
+    defineField({
+      name: "nav",
+      title: "Menu links",
+      type: "array",
+      group: "menu",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [str("label", "Label"), str("href", "Link", "e.g. /#about or /blog")],
+          preview: { select: { title: "label", subtitle: "href" } },
+        }),
+      ],
+    }),
+    defineField({ ...str("bookLabel", "Booking button label"), group: "menu" }),
+    defineField({ ...txt("footerCrisis", "Footer emergency note", 2), group: "menu" }),
+    defineField({ ...str("footerRights", "Footer copyright line"), group: "menu" }),
+  ],
+  preview: { prepare: () => ({ title: "Website settings" }) },
+});

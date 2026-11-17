@@ -1,0 +1,47 @@
+.privacy {
+  padding: var(--section-y) 0;
+  border-top: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(28px, 6vw, 88px);
+}
+
+.intro {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.icon {
+  flex: none;
+  color: var(--tide);
+  margin-top: 3px;
+}
+
+.item {
+  composes: item from "./Disclosure.module.css";
+}
+
+.item:first-of-type {
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+}
+
+.body p {
+  color: var(--ink);
+  font-size: 0.95rem;
+  max-width: 42em;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

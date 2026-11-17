@@ -1,0 +1,162 @@
+.section {
+  padding: var(--section-y) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(40px, 7vw, 104px);
+  align-items: center;
+}
+
+/* Clean photo with a fixed crop, so it always sits squarely in its column */
+.portrait {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.regs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 0 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.regs div {
+  padding: 16px 18px;
+}
+
+.regs div + div {
+  border-left: 1px solid var(--line);
+}
+
+.regs dt {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.regs dd {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--head);
+  word-break: break-word;
+}
+
+.role {
+  margin: 28px 0 4px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--bronze);
+}
+
+.name {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--head);
+}
+
+.intro {
+  font-size: 1.08rem;
+  max-width: 34em;
+}
+
+.credHead {
+  margin: 36px 0 14px;
+  font-size: 1.3rem;
+}
+
+.creds {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.creds li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tick {
+  flex: none;
+  color: var(--tide);
+  margin-top: 3px;
+}
+
+.disclaim {
+  margin: 32px 0 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--bronze);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--muted);
+  max-width: 34em;
+}
+
+/* Phones and tablets: text first, then the photo, then the registrations */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .visual {
+    display: contents;
+  }
+  .text {
+    order: 1;
+  }
+  .portrait {
+    order: 2;
+    width: 100%;
+    max-width: 440px;
+    margin: 40px auto 0;
+  }
+  .regs {
+    order: 3;
+    width: 100%;
+    max-width: 440px;
+    margin: 16px auto 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .regs {
+    grid-template-columns: 1fr;
+  }
+  .regs div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 18px;
+  }
+  .regs div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .regs dd {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+  }
+}

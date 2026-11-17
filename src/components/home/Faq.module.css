@@ -1,0 +1,41 @@
+.faq {
+  padding: var(--section-y) 0;
+  background: var(--fog);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(28px, 6vw, 88px);
+}
+
+.item {
+  composes: item from "./Disclosure.module.css";
+  border-color: var(--fog-line);
+}
+
+.item:first-child {
+  border-top: 1px solid var(--fog-line);
+}
+
+/* Questions are real headings for Google and AI search, styled as plain text. */
+.q {
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: inherit;
+}
+
+.item p {
+  color: var(--muted);
+  margin: 0 0 22px;
+  max-width: 40em;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

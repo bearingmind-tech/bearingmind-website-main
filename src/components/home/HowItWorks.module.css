@@ -1,0 +1,81 @@
+.section {
+  padding: var(--section-y) 0;
+  background: var(--fog);
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: clamp(36px, 5vw, 56px) 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+/* A real sequence, so the steps are numbered and joined by a line */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  right: calc(33.33% - 26px);
+  height: 1px;
+  background: var(--fog-line);
+}
+
+.steps li {
+  position: relative;
+}
+
+.num {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--bronze);
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--bronze);
+}
+
+.title {
+  margin: 22px 0 8px;
+  font-size: 1.3rem;
+}
+
+.text {
+  margin: 0;
+  color: var(--muted);
+  max-width: 26em;
+}
+
+@media (max-width: 760px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .steps::before {
+    top: 26px;
+    bottom: 26px;
+    left: 26px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+  .steps li {
+    padding-left: 76px;
+    min-height: 52px;
+  }
+  .num {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .title {
+    margin-top: 12px;
+  }
+}

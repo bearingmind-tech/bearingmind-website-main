@@ -1,0 +1,239 @@
+.section {
+  padding: var(--section-y) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: clamp(36px, 5vw, 56px);
+  align-items: stretch;
+}
+
+/* Every card shares the same four rows (header, details, fees, note and button),
+   so prices and buttons line up across cards whatever the text length. */
+.card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.top {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.name {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.short {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 22px 0 0;
+}
+
+.from {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.amount {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--head);
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  align-content: start;
+  margin: 0;
+  padding: 18px 0;
+  display: grid;
+  gap: 14px;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  font-size: 0.92rem;
+}
+
+.meta dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+}
+
+.meta dt svg {
+  display: none;
+}
+
+.meta dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.fees {
+  width: 100%;
+  border-collapse: collapse;
+  align-self: start;
+  font-size: 0.93rem;
+}
+
+.fees tr {
+  border-top: 1px solid var(--line);
+}
+
+.fees tr:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.fees th,
+.fees td {
+  padding: 13px 0;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.fees th {
+  font-weight: 500;
+  color: var(--head);
+}
+
+.dur {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  padding-inline: 10px !important;
+}
+
+.durEnd {
+  text-align: right !important;
+  padding-right: 0 !important;
+  font-size: 0.93rem;
+}
+
+.fee {
+  text-align: right !important;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--bronze);
+  white-space: nowrap;
+}
+
+.fee small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: normal;
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+}
+
+.note {
+  margin: 18px 0 22px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.cta {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Highlighted card */
+.featured {
+  background: var(--tide-deep);
+  border-color: var(--tide-deep);
+  color: #dfe9e3;
+  box-shadow: var(--shadow-lift);
+}
+
+.featured .name,
+.featured .amount,
+.featured .fees th {
+  color: var(--white);
+}
+
+.featured .short,
+.featured .from,
+.featured .meta dt,
+.featured .dur,
+.featured .note,
+.featured .fee small {
+  color: var(--sage);
+}
+
+.featured .meta dd {
+  color: #e3ece7;
+}
+
+.featured .fee {
+  color: var(--gold);
+}
+
+.featured .top,
+.featured .fees tr {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.ctaLight.ctaLight {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--forest);
+}
+
+.ctaLight.ctaLight:hover {
+  background: #ecd4a8;
+}
+
+.notes {
+  margin-top: 28px;
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.notes p {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.noteIcon {
+  flex: none;
+  color: var(--bronze);
+  margin-top: 3px;
+}
+
+@media (max-width: 1020px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+  }
+}

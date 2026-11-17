@@ -1,0 +1,231 @@
+.index,
+.post {
+  padding-top: 56px;
+  padding-bottom: 96px;
+}
+
+.head {
+  max-width: 40em;
+  margin-bottom: 40px;
+}
+
+.head h1,
+.postHead h1 {
+  font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  height: 100%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.thumb {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: var(--bronze);
+  letter-spacing: 0.04em;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 6px 0 8px;
+  line-height: 1.25;
+}
+
+.cardTitle a {
+  color: var(--head);
+  text-decoration: none;
+}
+
+.cardTitle a:hover {
+  color: var(--tide-deep);
+  text-decoration: underline;
+}
+
+.excerpt {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  margin: 0 0 8px;
+}
+
+.by {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 40px;
+  text-align: center;
+  border: 1px dashed var(--fog-line);
+  border-radius: var(--radius-lg);
+}
+
+/* Single post */
+.post {
+  max-width: calc(var(--container-narrow) + 2 * var(--gutter));
+}
+
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.crumbs a {
+  color: var(--muted);
+}
+
+.meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+
+.hero {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 32px 0 8px;
+}
+
+.body {
+  margin-top: 32px;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.body h2 {
+  font-size: 1.8rem;
+  margin: 1.8em 0 0.5em;
+}
+
+.body h3 {
+  font-size: 1.3rem;
+  margin: 1.5em 0 0.4em;
+}
+
+.body ul,
+.body ol {
+  padding-left: 1.3em;
+  margin: 0 0 1em;
+}
+
+.body li {
+  margin-bottom: 0.4em;
+}
+
+.body blockquote {
+  margin: 1.5em 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--bronze);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--head);
+}
+
+.figure {
+  margin: 2em 0;
+}
+
+.figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.figure figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.faqs,
+.sources {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.faqs h2,
+.sources h2 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.faqs h3 {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 20px 0 6px;
+}
+
+.faqs p {
+  color: var(--muted);
+}
+
+.sources ol {
+  padding-left: 1.3em;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.author {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-top: 48px;
+  padding: 24px;
+  background: var(--fog);
+  border-radius: var(--radius);
+}
+
+.author img {
+  border-radius: 50%;
+  flex: none;
+}
+
+.authorName {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--head);
+  margin: 0;
+}
+
+.authorRole {
+  color: var(--bronze);
+  font-size: 0.85rem;
+  margin: 2px 0 8px;
+}
+
+.authorBio {
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.cta {
+  margin-top: 40px;
+}

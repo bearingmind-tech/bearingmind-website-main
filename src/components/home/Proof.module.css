@@ -1,0 +1,70 @@
+.proof {
+  text-align: center;
+  padding: var(--section-y) 0;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.quote {
+  margin: 0 auto;
+  max-width: 16em;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--head);
+}
+
+.quote::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 48px;
+  margin: 0 auto 28px;
+  background: var(--bronze);
+}
+
+.lines {
+  list-style: none;
+  padding: 0;
+  margin: 36px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.lines li {
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--pill);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  background: var(--white);
+}
+
+.noquote {
+  margin: 32px auto 0;
+  max-width: 32em;
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.cta {
+  margin: 36px 0 0;
+}
+
+@media (max-width: 640px) {
+  .lines {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lines li {
+    border: 0;
+    background: none;
+    padding: 4px 0;
+  }
+}

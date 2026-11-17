@@ -1,0 +1,41 @@
+.cta {
+  margin: 24px 0 0;
+}
+
+.form {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.send {
+  margin-top: 12px;
+}
+
+.done {
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: var(--fog);
+  border-radius: 12px;
+  color: var(--head);
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

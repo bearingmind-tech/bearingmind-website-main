@@ -1,0 +1,49 @@
+.head {
+  max-width: 40em;
+}
+
+/* The logo's bronze stroke, used as the only section marker */
+.mark {
+  display: block;
+  width: 40px;
+  height: 14px;
+  margin-bottom: 18px;
+  background:
+    linear-gradient(var(--bronze), var(--bronze)) left bottom / 26px 1.6px no-repeat,
+    linear-gradient(-45deg, transparent 45%, var(--bronze) 45%, var(--bronze) 55%, transparent 55%) 24px 0 / 14px 14px no-repeat;
+}
+
+.title {
+  font-size: var(--fs-h2);
+}
+
+.sub {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.more {
+  margin-top: 20px;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.center .mark {
+  margin-inline: auto;
+}
+
+.dark .title {
+  color: var(--white);
+}
+
+.dark .sub {
+  color: var(--sage);
+}
+
+.dark .mark {
+  filter: brightness(1.6) saturate(0.8);
+}

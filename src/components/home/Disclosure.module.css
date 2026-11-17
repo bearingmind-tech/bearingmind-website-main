@@ -1,0 +1,41 @@
+/* Shared look for expandable rows (privacy notice and questions). */
+.item {
+  border-bottom: 1px solid var(--line);
+}
+
+.item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  color: var(--head);
+}
+
+.item summary::-webkit-details-marker {
+  display: none;
+}
+
+.item summary::after {
+  content: "";
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(var(--bronze), var(--bronze)) center / 11px 1.5px no-repeat,
+    linear-gradient(var(--bronze), var(--bronze)) center / 1.5px 11px no-repeat;
+  transition: transform 0.25s ease, background-color 0.25s;
+}
+
+.item[open] summary::after {
+  transform: rotate(45deg);
+  background-color: var(--fog);
+}
+
+.item summary:hover {
+  color: var(--tide-deep);
+}

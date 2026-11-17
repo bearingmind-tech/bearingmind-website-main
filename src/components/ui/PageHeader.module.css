@@ -1,0 +1,79 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  background: var(--fog);
+  border-bottom: 1px solid var(--fog-line);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(44px, 6vw, 76px);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--fog-line);
+}
+
+.crumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: var(--tide-deep);
+  text-decoration: underline;
+}
+
+.title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin: 14px 0 0;
+  max-width: 34em;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.rose {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  width: 420px;
+  height: 420px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--bronze);
+  stroke-width: 1;
+  opacity: 0.18;
+}
+
+.rose polygon {
+  fill: var(--bronze);
+  stroke: none;
+}
+
+@media (max-width: 700px) {
+  .rose {
+    width: 260px;
+    height: 260px;
+    right: -90px;
+    opacity: 0.12;
+  }
+}

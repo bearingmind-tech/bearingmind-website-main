@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 560px;
+  padding: 6px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--pill);
+  box-shadow: var(--shadow-soft);
+}
+
+.form:focus-within {
+  border-color: var(--tide);
+  box-shadow: 0 0 0 3px var(--fog);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  padding: 0 16px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.btn {
+  flex: none;
+}
