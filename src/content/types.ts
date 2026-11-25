@@ -58,6 +58,8 @@ export type LandingPage = {
   intro: string[];
   sections: { heading: string; body: string[]; points?: string[] }[];
   faq: Faq[];
+  /** The plan's guide on the blog */
+  readMore?: { label: string; href: string };
 };
 export type ResearchNote = { text: string; source: string };
 export type Registration = { label: string; value: string; badge?: string };

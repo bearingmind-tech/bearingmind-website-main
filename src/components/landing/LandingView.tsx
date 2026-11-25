@@ -81,6 +81,11 @@ export function LandingView({ page, plan, booking, site, others }: Props) {
             ) : null}
           </section>
         ))}
+        {page.readMore && (
+          <p className={styles.readMore}>
+            Further reading: <Link href={page.readMore.href}>{page.readMore.label}</Link>
+          </p>
+        )}
       </div>
 
       <Faq c={{ heading: "Questions", subheading: `About ${plan.label} sessions.`, items: page.faq }} />

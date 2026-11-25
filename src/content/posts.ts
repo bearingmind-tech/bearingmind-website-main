@@ -326,4 +326,321 @@ managers.body = pt(managers.slug, [
   "Our work is in line with WHO and ILO guidance. To discuss a programme for your team, [enquire for your organisation](/organisations). For individual staff, see [our guide to CBT for burnout and stress](/blog/cbt-for-burnout-and-stress).",
 ]);
 
-export const defaultPosts: Post[] = [managers, whoToSee, burnout];
+/* =====================================================================
+   4. Public figures: pressure, privacy and getting help discreetly
+   ===================================================================== */
+const publicFigures: Post = {
+  kind: "blog",
+  slug: "mental-health-for-public-figures",
+  title: "Mental health in the public eye: pressure, privacy and getting help discreetly",
+  seoTitle: "Mental Health for Public Figures and HNIs",
+  seoDescription:
+    "Why public figures, celebrities and senior leaders delay getting help, the pressures that come with visibility, and how to find discreet, confidential counselling.",
+  excerpt:
+    "Visibility brings its own pressures: constant scrutiny, few people you can speak freely with, and a real fear of being seen asking for help. Here is what helps, and how to get support without the risk.",
+  publishedAt: "2026-11-25T09:00:00+05:30",
+  author,
+  body: [],
+  faqs: [
+    {
+      question: "Can a public figure get counselling without anyone finding out?",
+      answer:
+        "Yes. Look for a counsellor who lets you book under any name, offers a confidentiality agreement, and meets somewhere discreet rather than a clinic waiting room. At BearingMind, sessions for public figures take place over a private dinner at a luxury hotel in Bangalore.",
+    },
+    {
+      question: "Is it a sign of weakness for a leader to see a counsellor?",
+      answer:
+        "No. Many leaders use counselling the way they use any expert advisor: to think more clearly under pressure. Asking for help early is a sign of good judgement.",
+    },
+    {
+      question: "Can my spouse attend with me?",
+      answer: "Yes. Public Figures sessions at BearingMind can be reserved for one person or as a couple.",
+    },
+    {
+      question: "Is counselling the same as psychiatric treatment?",
+      answer:
+        "No. Counselling is non-clinical and does not involve diagnosis or medication. If you need clinical care, a good counsellor will work alongside your doctor or psychiatrist.",
+    },
+  ],
+  sources: [
+    { title: "World Health Organization, World mental health report: transforming mental health for all (2022)", url: "https://www.who.int/publications/i/item/9789240049338" },
+    { title: "Richardson & Rothstein, Effects of occupational stress management intervention programs: a meta-analysis, Journal of Occupational Health Psychology (2008)", url: "https://doi.org/10.1037/1076-8998.13.1.69" },
+    { title: "Tele-MANAS, Ministry of Health and Family Welfare, Government of India", url: "https://telemanas.mohfw.gov.in/" },
+  ],
+};
+publicFigures.body = pt(publicFigures.slug, [
+  "**The short answer:** people in public life face the same mental health challenges as everyone else, plus a few that come with being visible. The biggest barrier is rarely willingness; it is the fear of being seen. Discreet, structured counselling removes that barrier.",
+  "## Why people in the public eye delay getting help",
+  "Mental health conditions are common. The World Health Organization estimates that **one in eight people worldwide lives with a mental disorder** (WHO, 2022). Fame, wealth and success do not change that number. What they change is the cost of asking for help:",
+  "- **Being recognised** in a clinic, a waiting room or a car park.",
+  "- **Reputation risk:** worry that a board, investors, sponsors or the media will read it as weakness.",
+  "- **Trust:** wondering whether the person across the table will keep what you say to themselves.",
+  "- **Time:** schedules that leave no room for a weekly appointment across town.",
+  "So people wait. They manage with long hours, alcohol, sleep aids or simply pushing through, until the strain shows up in their health, their family or their decisions.",
+  "## The pressures that come with visibility",
+  "### Constant scrutiny",
+  "Every decision, word and photograph can be judged by people you will never meet. Over time, many people start performing all the time, even at home, and lose the sense of where the public role ends and they begin.",
+  "### Isolation at the top",
+  "The higher you rise, the fewer people can speak to you as an equal. Colleagues report to you, others want something from you, and friends may not understand the pressure. Many leaders describe feeling surrounded but alone.",
+  "### Decisions with heavy consequences",
+  "When livelihoods, investments or reputations ride on your choices, the mind rarely switches off. Rumination at night and second-guessing by day are common, and both drain the clarity good decisions need.",
+  "### Strain on relationships and family",
+  "Travel, irregular hours and public attention land on spouses and children too. In business families, questions of succession and harmony add another layer.",
+  "## What actually helps",
+  "Cognitive Behavioural Therapy (CBT) is well suited to people who like practical tools. It works on the link between how you read a situation, how you feel, and what you then do. Research on workplace stress programmes found that **cognitive-behavioural approaches had larger effects than other types of intervention** (Richardson & Rothstein, 2008). In practice, that looks like:",
+  "- **Separating facts from forecasts.** \"The deal might fall through, and everyone will say I failed\" is a forecast. Writing down the evidence for and against it turns a spiral into a plan.",
+  "- **Reading criticism differently.** Not every comment needs a response, and not every critic is right. CBT helps you decide which feedback is useful, and let the rest go.",
+  "- **Protecting recovery time.** Short, non-negotiable routines for sleep, movement and time with family work better than waiting for a holiday.",
+  "- **A space where you are not performing.** Simply having one hour a week where you do not have to be \"on\" is, for many, the first relief.",
+  "## How to choose a counsellor when privacy matters",
+  "Before you book, ask:",
+  "1. **Can I use any name I like?** You should not have to share more than is needed.",
+  "2. **Will you sign a confidentiality agreement?** A professional will not hesitate.",
+  "3. **Where do we meet?** A discreet setting matters as much as the conversation.",
+  "4. **How is my data handled?** In India, personal data is protected under the Digital Personal Data Protection Act, 2023. Ask how notes are stored and who can see them.",
+  "5. **What are your qualifications?** Look for formal training in counselling psychology and a clear, structured approach such as CBT.",
+  "## How BearingMind works with public figures",
+  "Sessions take place over a **private dinner at a luxury hotel in Bangalore**, from 7:30 to 9:00 PM, Monday to Friday, in a setting that looks like any other business evening. You may book for yourself or as a couple, under any name you prefer, and a confidentiality agreement is available before you meet. The hotel is shared privately once your reservation is confirmed.",
+  "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. Read more about [counselling for public figures](/counselling-for-public-figures), or [reserve an evening](/book/public-figures).",
+  "Our counselling and coaching is not a substitute for clinical therapy or psychiatric treatment.",
+  `> ${CRISIS}`,
+]);
+
+/* =====================================================================
+   5. Online counselling for working professionals
+   ===================================================================== */
+const onlineProfessionals: Post = {
+  kind: "blog",
+  slug: "online-counselling-for-working-professionals",
+  title: "Online counselling for working professionals: does it work, and how to choose",
+  seoTitle: "Online Counselling for Professionals in India",
+  seoDescription:
+    "Does online counselling work as well as in-person sessions? What the research says, signs you could benefit, how to choose a counsellor in India, and how to prepare.",
+  excerpt:
+    "Online counselling lets busy professionals get support without losing half a day to travel. Research shows online CBT works about as well as face-to-face CBT. Here is how to choose a counsellor and get the most from your sessions.",
+  publishedAt: "2026-11-25T09:10:00+05:30",
+  author,
+  body: [],
+  faqs: [
+    {
+      question: "Is online counselling as effective as in-person counselling?",
+      answer:
+        "For many common concerns, yes. A systematic review and meta-analysis found that internet-based CBT works about as well as face-to-face CBT for anxiety and depression (Carlbring et al., 2018).",
+    },
+    {
+      question: "Will my employer find out I am seeing a counsellor?",
+      answer:
+        "Not from a professional counsellor. At BearingMind, we never confirm to anyone that you are a client without your written permission, including when your organisation arranges the sessions. Using a personal device and email adds another layer of privacy.",
+    },
+    {
+      question: "What do I need for an online session?",
+      answer: "A private, quiet room, headphones, a stable internet connection, and a laptop or phone that can run Google Meet.",
+    },
+    {
+      question: "How do I check a counsellor's qualifications in India?",
+      answer:
+        "Ask about their training in counselling psychology and the approach they use. Allied and healthcare professionals in India, including psychologists, are being registered under the National Commission for Allied and Healthcare Professions (NCAHP) Act, 2021.",
+    },
+  ],
+  sources: [
+    { title: "Carlbring et al., Internet-based vs. face-to-face cognitive behavior therapy: an updated systematic review and meta-analysis, Cognitive Behaviour Therapy (2018)", url: "https://doi.org/10.1080/16506073.2017.1401115" },
+    { title: "World Health Organization, Mental health at work: fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work" },
+    { title: "The National Commission for Allied and Healthcare Professions Act, 2021, Government of India" },
+    { title: "Tele-MANAS, Ministry of Health and Family Welfare, Government of India", url: "https://telemanas.mohfw.gov.in/" },
+  ],
+};
+onlineProfessionals.body = pt(onlineProfessionals.slug, [
+  "**The short answer:** yes, online counselling works. For anxiety and depression, research shows **online CBT is about as effective as face-to-face CBT** (Carlbring et al., 2018). For working professionals, it also removes the two biggest obstacles to getting help: time and being seen.",
+  "## Why professionals put off getting help",
+  "Most people who need support at work are not in crisis. They are functioning, often well, but running on stress. The usual reasons for waiting are practical:",
+  "- A commute to an appointment can turn one hour into three.",
+  "- Taking time off raises questions at work.",
+  "- It never feels serious enough to justify the effort.",
+  "Meanwhile, the stress compounds. The World Health Organization notes that poor working environments, including excessive workloads and job insecurity, pose a risk to mental health, and that depression and anxiety cost the global economy around a trillion US dollars a year in lost productivity.",
+  "## Signs you could benefit from counselling",
+  "Consider talking to someone if, for several weeks:",
+  "- you dread the start of the working week;",
+  "- you lie awake replaying meetings or planning the next day;",
+  "- small things at home make you irritable;",
+  "- you have lost the sense of direction you once had in your career;",
+  "- office politics or a difficult manager are taking up more of your head than your actual work;",
+  "- you need more coffee, screens or alcohol to switch on or off.",
+  "None of these means something is wrong with you. They are signals that the way you are handling pressure needs an update.",
+  "## Online or in person?",
+  "Both work. Online sessions suit you if your schedule is tight, you travel or work from different cities, or you would rather not be seen walking into a counsellor's office. In-person sessions may suit you better if you find it hard to switch off at home or prefer a change of setting.",
+  "## How to choose a counsellor",
+  "1. **Training and approach.** Ask what they trained in and how they work. A structured approach such as Cognitive Behavioural Therapy (CBT) gives you practical tools, not just a place to talk.",
+  "2. **Registration.** In India, allied and healthcare professionals, including psychologists, are being registered under the National Commission for Allied and Healthcare Professions (NCAHP) Act, 2021. Ask whether your counsellor is registered.",
+  "3. **Confidentiality.** Ask directly: who will know I am a client? The answer should be no one, without your written permission.",
+  "4. **Goals and measurement.** A good counsellor agrees clear goals with you and checks progress, rather than leaving sessions open-ended.",
+  "5. **Fit.** You should feel heard, not judged. It is fine to change counsellor if the fit is wrong.",
+  "## How to prepare for your first online session",
+  "- **Find a private space.** A closed room where you will not be overheard matters more than a perfect background. Some people take sessions from a parked car.",
+  "- **Use headphones** for privacy and better sound.",
+  "- **Check your connection** and test Google Meet a few minutes before.",
+  "- **Use a personal device and email** if you want to keep work systems out of it.",
+  "- **Think about two or three things** you would like to be different in three months. You do not need to have it all worked out.",
+  "## What happens in the first session",
+  "You talk about what brings you, agree two or three clear goals, and decide how you will measure progress. There is no diagnosis and no judgement. Many people see clear progress within four sessions.",
+  "## Online counselling at BearingMind",
+  "Sessions for employed professionals are held online on Google Meet, from **4 to 5 PM or 5 to 6 PM, Monday to Friday**, so you can join from anywhere in Bangalore or anywhere in India. Sessions are in English, Kannada or Hindi, with working Tamil. Progress is measured with brief, standard questionnaires at the first and fourth sessions, so you can see the change yourself.",
+  "Read more about [online counselling for working professionals](/counselling-for-working-professionals), our guide to [CBT for burnout and stress](/blog/cbt-for-burnout-and-stress), or [book a session](/book/employed-professionals).",
+  `> ${CRISIS}`,
+]);
+
+/* =====================================================================
+   6. Homemakers: stress and mental health
+   ===================================================================== */
+const homemakers: Post = {
+  kind: "blog",
+  slug: "stress-and-mental-health-for-homemakers",
+  title: "Stress and mental health for homemakers: the invisible load, and what helps",
+  seoTitle: "Stress and Mental Health for Homemakers",
+  seoDescription:
+    "Why homemakers often feel stressed, unseen and exhausted, the signs to watch for, practical CBT steps to try at home, and when counselling can help.",
+  excerpt:
+    "Running a home is real, demanding work, and much of it goes unseen. Here is why homemakers so often feel stretched thin, the signs to watch for, and practical steps that help.",
+  publishedAt: "2026-11-25T09:20:00+05:30",
+  author,
+  body: [],
+  faqs: [
+    {
+      question: "Is it normal for a homemaker to feel stressed or low?",
+      answer:
+        "Yes, it is common. Running a home involves long hours, constant responsibility and little recognition. Feeling stressed is not a failing; it is a signal that something needs to change.",
+    },
+    {
+      question: "Can I have counselling in Kannada or Hindi?",
+      answer: "At BearingMind, yes. Sessions are in English, Kannada or Hindi, with working Tamil.",
+    },
+    {
+      question: "Will my family know I am seeing a counsellor?",
+      answer:
+        "Not from us. We never confirm to anyone that you are a client without your written permission. You may also book under any name you prefer.",
+    },
+    {
+      question: "Can I have counselling from home?",
+      answer: "Yes. Homemakers sessions at BearingMind can be online on Google Meet or in person in Bangalore, on Saturday afternoons.",
+    },
+  ],
+  sources: [
+    { title: "World Health Organization, Depression: fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/depression" },
+    { title: "Scott et al., Improving sleep quality leads to better mental health: a meta-analysis of randomised controlled trials, Sleep Medicine Reviews (2021)", url: "https://doi.org/10.1016/j.smrv.2021.101556" },
+    { title: "Tele-MANAS, Ministry of Health and Family Welfare, Government of India", url: "https://telemanas.mohfw.gov.in/" },
+  ],
+};
+homemakers.body = pt(homemakers.slug, [
+  "**The short answer:** running a home is demanding, continuous work, and much of it is invisible. Feeling stressed, tired or low is common and understandable. Small, practical changes help, and counselling can give you a space that is finally just for you.",
+  "## The invisible load",
+  "Cooking, cleaning and school runs are the visible part. The heavier part is often the thinking: remembering who needs what, planning meals, managing relatives, keeping the peace, worrying about children and elders. This mental load rarely stops, has no weekends and is seldom thanked.",
+  "Many homemakers also carry quieter pressures:",
+  "- **Little time for yourself,** and guilt when you take it.",
+  "- **Isolation,** especially after moving cities or once children start school.",
+  "- **Lack of recognition,** as if the work does not count because it is unpaid.",
+  "- **Family expectations** from in-laws, a spouse or the wider family.",
+  "- **Loss of identity,** particularly for women who left a career, or when children grow up and leave home.",
+  "Depression is common worldwide, and the World Health Organization notes it is **about 50% more common among women than among men**. That is not a reason to worry, but it is a reason to take your own wellbeing as seriously as everyone else's.",
+  "## Signs to watch for",
+  "Consider getting support if, for a few weeks or more:",
+  "- you feel tired even after rest;",
+  "- you snap at people you love, then feel guilty;",
+  "- you feel nobody notices what you do;",
+  "- you have stopped doing things you used to enjoy;",
+  "- you lie awake worrying, or wake up already exhausted;",
+  "- you feel you have lost yourself in everyone else's needs.",
+  "## Practical steps you can start this week",
+  "These come from Cognitive Behavioural Therapy (CBT), a practical approach that looks at how thoughts, feelings and actions are linked.",
+  "### 1. Catch the \"should\" thoughts",
+  "\"I should be able to manage everything.\" \"A good mother never feels like this.\" Write these thoughts down when they come. Then ask: would I say this to a friend in my position? Usually the answer is no, and that is a sign the thought is too harsh.",
+  "### 2. Schedule time that is yours",
+  "Plan two or three small things a week that give you pleasure or a sense of achievement: a walk, a call with a friend, reading, a class. Put them on the calendar like any other commitment, and protect them.",
+  "### 3. Share the load out loud",
+  "Much of the mental load is invisible because it lives in one head. Write down everything you keep track of for a week, and share the list with your family. Ask for one or two specific things to be taken over, not general \"help\".",
+  "### 4. Protect your sleep",
+  "Sleep is often the first thing homemakers give up. A meta-analysis of randomised trials found that **improving sleep quality led to measurable improvements in depression, anxiety and stress** (Scott et al., 2021). A regular bedtime and a phone-free last half-hour are good places to start.",
+  "### 5. Say it calmly, say it early",
+  "Resentment builds when needs go unspoken. Try a simple pattern: \"When ___ happens, I feel ___. What would help is ___.\" It keeps conversations about the problem, not about blame.",
+  "## When to talk to someone",
+  "If these steps do not shift things after a few weeks, or if low mood, worry or tiredness are affecting your days, counselling can help. It is a private, judgement-free hour to understand what you are feeling and find practical ways forward. Please see a doctor as well if low mood has lasted most days for two weeks or more.",
+  "## Counselling for homemakers at BearingMind",
+  "Sessions are held on **Saturday afternoons at 2, 3 or 4 PM**, online on Google Meet or in person in Bangalore, in English, Kannada or Hindi, with working Tamil. What you share stays between us, and you may book under any name you prefer.",
+  "Read more about [counselling for homemakers](/counselling-for-homemakers), or [book a session](/book/homemakers).",
+  `> ${CRISIS}`,
+]);
+
+/* =====================================================================
+   7. Children: signs a child may need counselling
+   ===================================================================== */
+const children: Post = {
+  kind: "blog",
+  slug: "does-my-child-need-counselling",
+  title: "Does my child need counselling? Signs parents should not ignore",
+  seoTitle: "Does My Child Need Counselling? Signs for Parents",
+  seoDescription:
+    "How to tell ordinary ups and downs from signs a child needs support, how to talk to your child, what child counselling with parents involves, and when to act.",
+  excerpt:
+    "All children have hard days. Here is how to tell ordinary ups and downs from signs that your child may need support, how to start the conversation, and what counselling with a parent involves.",
+  publishedAt: "2026-11-25T09:30:00+05:30",
+  author,
+  body: [],
+  faqs: [
+    {
+      question: "At what age can a child start counselling?",
+      answer:
+        "Children of many ages can benefit. With younger children, sessions rely more on play and on working with parents; with older children and teenagers, they talk more directly. A consultant who specialises in children will adapt to your child's age.",
+    },
+    {
+      question: "Do parents attend child counselling sessions?",
+      answer:
+        "Often, yes. At BearingMind, a parent or guardian makes the booking and takes part in Children with Parents sessions, so progress continues at home.",
+    },
+    {
+      question: "Will counselling label my child?",
+      answer:
+        "Counselling at BearingMind is non-clinical and does not involve diagnosis. If a child needs clinical assessment, we work alongside your paediatrician or a child psychiatrist, or refer you to one.",
+    },
+    {
+      question: "How much screen time is too much?",
+      answer:
+        "There is no single safe number, but the US Surgeon General's 2023 advisory reported that adolescents who spend more than three hours a day on social media face double the risk of symptoms of depression and anxiety.",
+    },
+  ],
+  sources: [
+    { title: "World Health Organization, Mental health of adolescents: fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health" },
+    { title: "US Surgeon General, Social Media and Youth Mental Health: advisory (2023)", url: "https://www.hhs.gov/surgeongeneral/reports-and-publications/youth-mental-health/social-media/index.html" },
+    { title: "Tele-MANAS, Ministry of Health and Family Welfare, Government of India", url: "https://telemanas.mohfw.gov.in/" },
+  ],
+};
+children.body = pt(children.slug, [
+  "**The short answer:** every child has difficult days. It is worth seeking support when a change in mood or behaviour lasts for weeks, is more intense than usual, or gets in the way of school, friendships, sleep or family life. Acting early is easier than waiting for it to pass.",
+  "## Why it is worth paying attention",
+  "Mental health difficulties often begin young. The World Health Organization estimates that **one in seven 10 to 19 year-olds worldwide experiences a mental disorder**, and that half of all mental health conditions start by age 14, most of them undetected and untreated. Children rarely say \"I need help\". They show it.",
+  "## Ordinary ups and downs, or something more?",
+  "Three questions help separate the two:",
+  "1. **How long?** A bad week is normal. A change that lasts a month or more deserves attention.",
+  "2. **How strong?** Is the worry, anger or sadness much bigger than the situation calls for?",
+  "3. **How much does it get in the way?** Is it affecting school, sleep, eating, friendships or family life?",
+  "## Signs parents should not ignore",
+  "- **Worry and fear:** stomach aches before school, refusing to go, needing constant reassurance.",
+  "- **Anger and behaviour:** frequent outbursts, tantrums beyond their age, aggression, or trouble at school.",
+  "- **Low mood:** seeming sad or flat, losing interest in things they loved, withdrawing from friends.",
+  "- **Sleep and eating:** trouble falling asleep, nightmares, or a clear change in appetite.",
+  "- **Screens:** distress when devices are taken away, or screens crowding out sleep, homework and friends. The US Surgeon General's 2023 advisory reported that **adolescents spending more than three hours a day on social media face double the risk of depression and anxiety symptoms**.",
+  "- **After a big change:** a move, a new sibling, a death in the family, or parents separating can unsettle even very secure children.",
+  "## How to talk to your child",
+  "- **Pick a calm moment,** side by side rather than face to face: in the car, on a walk, while cooking.",
+  "- **Describe, don't diagnose:** \"I've noticed you seem worried before school\" works better than \"What's wrong with you?\"",
+  "- **Listen more than you advise.** Repeat back what you hear so they know you understood.",
+  "- **Keep it ordinary.** \"Lots of people talk to someone when things feel hard. It helps.\"",
+  "## What child counselling with parents involves",
+  "Good child counselling does not happen to a child in isolation. The counsellor gets to know your child, often through conversation, play or drawing for younger children, and works with you as a parent so you understand what is going on and how to respond in ways that help. That way, progress continues between sessions, at home.",
+  "Counselling is not about finding fault with parents. It is about giving your child, and you, practical tools for a difficult patch.",
+  "## When to seek help urgently",
+  "Contact a doctor promptly if your child talks about harming themselves, stops eating, is not sleeping for days, or seems very withdrawn or confused.",
+  `> ${CRISIS}`,
+  "## Children with Parents sessions at BearingMind",
+  "Sessions are led by a BearingMind associate consultant who **specialises in children's counselling**, with a parent or guardian taking part. They are held on **Sunday mornings at 8, 9 or 10 AM**, online on Google Meet or in person in Bangalore. Our work is non-clinical; where a child needs clinical care, we work alongside your paediatrician or a child psychiatrist.",
+  "Read more about [child counselling with parents](/child-counselling-bangalore), or [book a session](/book/children).",
+]);
+
+export const defaultPosts: Post[] = [children, homemakers, onlineProfessionals, publicFigures, managers, whoToSee, burnout];

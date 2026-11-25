@@ -100,6 +100,21 @@
   line-height: 1.75;
 }
 
+.readMore {
+  max-width: 760px;
+  margin: clamp(28px, 4vw, 40px) 0 0;
+  padding: 16px 20px;
+  border-left: 3px solid var(--plan);
+  background: var(--plan-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.98rem;
+}
+
+.readMore a {
+  color: var(--plan-deep);
+  font-weight: 500;
+}
+
 .h2 {
   margin-bottom: 16px;
   font-size: var(--fs-h2-sm);

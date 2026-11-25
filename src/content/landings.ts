@@ -6,6 +6,7 @@ export const defaultLandings: LandingPage[] = [
   {
     plan: "dining",
     slug: "counselling-for-public-figures",
+    readMore: { label: "Mental health in the public eye: pressure, privacy and getting help discreetly", href: "/blog/mental-health-for-public-figures" },
     title: "Private counselling for public figures in Bangalore",
     sub: "Discreet one-to-one counselling and coaching for celebrities, HNIs and business leaders, over dinner at a luxury hotel.",
     seoTitle: "Counselling for Celebrities & HNIs in Bangalore",
@@ -72,6 +73,7 @@ export const defaultLandings: LandingPage[] = [
   {
     plan: "professional",
     slug: "counselling-for-working-professionals",
+    readMore: { label: "Online counselling for working professionals: does it work, and how to choose", href: "/blog/online-counselling-for-working-professionals" },
     title: "Online counselling for working professionals",
     sub: "CBT-based sessions on Google Meet for stress, burnout and direction at work, at times that fit around your job.",
     seoTitle: "Online Counselling for Working Professionals in India",
@@ -136,6 +138,7 @@ export const defaultLandings: LandingPage[] = [
   {
     plan: "homemaker",
     slug: "counselling-for-homemakers",
+    readMore: { label: "Stress and mental health for homemakers: the invisible load, and what helps", href: "/blog/stress-and-mental-health-for-homemakers" },
     title: "Counselling for homemakers in Bangalore and online",
     sub: "A calm, confidential hour set aside just for you, online or face-to-face, on Saturday afternoons.",
     seoTitle: "Counselling for Homemakers in Bangalore & Online",
@@ -194,6 +197,7 @@ export const defaultLandings: LandingPage[] = [
   {
     plan: "children",
     slug: "child-counselling-bangalore",
+    readMore: { label: "Does my child need counselling? Signs parents should not ignore", href: "/blog/does-my-child-need-counselling" },
     title: "Child counselling with parents in Bangalore",
     sub: "Counselling for children, together with a parent or guardian, with our associate consultant specialised in children's counselling.",
     seoTitle: "Child Counselling with Parents in Bangalore",
