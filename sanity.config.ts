@@ -16,7 +16,7 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
     templates: (prev) => [
-      ...prev.filter((t) => !singletonTypes.has(t.schemaType) && t.id !== "post"),
+      ...prev.filter((t) => !singletonTypes.has(t.schemaType) && t.schemaType !== "landingPage" && t.id !== "post"),
       { id: "post-blog", title: "Blog post", schemaType: "post", value: { kind: "blog" } },
       { id: "post-article", title: "Article", schemaType: "post", value: { kind: "article" } },
     ],

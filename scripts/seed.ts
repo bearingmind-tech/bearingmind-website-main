@@ -6,6 +6,7 @@ import { createClient } from "next-sanity";
 import { randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { bookingDefaults, homeDefaults, siteDefaults } from "../src/content/defaults";
+import { defaultLandings } from "../src/content/landings";
 import { defaultPosts } from "../src/content/posts";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -64,6 +65,10 @@ async function main() {
     bio: homeDefaults.about.intro,
     credentials: homeDefaults.about.credentials,
   });
+
+  for (const l of defaultLandings) {
+    await put(`landing-${l.slug}`, "landingPage", { ...l, slug: { _type: "slug", current: l.slug } });
+  }
 
   for (const p of defaultPosts) {
     const { slug, ...rest } = p;

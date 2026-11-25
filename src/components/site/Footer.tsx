@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { BookingContent, SiteSettings } from "@/content/types";
+import { defaultLandings } from "@/content/landings";
 import { getPosts } from "@/lib/content";
 import { telHref, waHref } from "@/lib/links";
 import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "../ui/Icons";
@@ -68,7 +69,7 @@ export async function Footer({ site, booking }: { site: SiteSettings; booking: B
           <p className={styles.head}>Sessions</p>
           <ul>
             {booking.sessionTypes.map((t) => (
-              <li key={t.key}><Link href={`/book/${t.slug}`}>{t.label}</Link></li>
+              <li key={t.key}><Link href={`/${defaultLandings.find((l) => l.plan === t.key)?.slug ?? `book/${t.slug}`}`}>{t.label}</Link></li>
             ))}
           </ul>
           <p className={styles.head}>Read</p>

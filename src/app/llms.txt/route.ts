@@ -1,5 +1,6 @@
 import { getBooking, getHome, getPosts, getSite } from "@/lib/content";
 import { feeText, minText } from "@/lib/booking";
+import { defaultLandings } from "@/content/landings";
 
 export const revalidate = 3600;
 
@@ -35,7 +36,9 @@ export async function GET() {
     booking.showFeesPublicly ? "## Sessions and fees" : "## Sessions",
     ...booking.sessionTypes.flatMap((t) => [
       `### ${t.label}`,
-      `For: ${t.forWho}. Mode: ${t.modeText}. Slots: ${t.slotsText}. ${t.note} Book: ${u(`/book/${t.slug}`)}`,
+      `For: ${t.forWho}. Mode: ${t.modeText}. Slots: ${t.slotsText}. ${t.note}`,
+      ...defaultLandings.filter((l) => l.plan === t.key).map((l) => `About this plan: ${u(`/${l.slug}`)}`),
+      `Book: ${u(`/book/${t.slug}`)}`,
       ...t.options.map((o) => `- ${o.label}: ${minText(o)}${booking.showFeesPublicly ? `, ${feeText(booking, o)}` : ""}`),
     ]),
     "",

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { defaultLandings } from "@/content/landings";
 import { getBooking, getPosts, getSite } from "@/lib/content";
 
 export const revalidate = 3600;
@@ -15,7 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: u("/"), changeFrequency: "weekly", priority: 1, images: [u("/og-image.png"), u("/images/m-h-sharieff.jpg")] },
     { url: u("/book"), changeFrequency: "weekly", priority: 0.9 },
-    ...booking.sessionTypes.map((t) => ({ url: u(`/book/${t.slug}`), changeFrequency: "weekly" as const, priority: 0.8 })),
+    ...defaultLandings.map((l) => ({ url: u(`/${l.slug}`), changeFrequency: "monthly" as const, priority: 0.9 })),
+    ...booking.sessionTypes.map((t) => ({ url: u(`/book/${t.slug}`), changeFrequency: "weekly" as const, priority: 0.7 })),
     { url: u("/about"), changeFrequency: "monthly", priority: 0.9, images: [u("/images/m-h-sharieff.jpg")] },
     { url: u("/approach"), changeFrequency: "monthly", priority: 0.8 },
     { url: u("/sessions"), changeFrequency: "monthly", priority: 0.9 },

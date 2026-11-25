@@ -1,5 +1,6 @@
 import { CalendarIcon } from "@sanity/icons/Calendar";
 import { CogIcon } from "@sanity/icons/Cog";
+import { DocumentsIcon } from "@sanity/icons/Documents";
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { HomeIcon } from "@sanity/icons/Home";
 import { UserIcon } from "@sanity/icons/User";
@@ -15,6 +16,7 @@ export const structure: StructureResolver = (S) =>
       single(S, "homePage", "Home page", HomeIcon),
       single(S, "bookingSettings", "Sessions & booking", CalendarIcon),
       single(S, "siteSettings", "Website settings", CogIcon),
+      S.documentTypeListItem("landingPage").title("Landing pages").icon(DocumentsIcon),
       S.divider(),
       S.listItem()
         .title("Blog")

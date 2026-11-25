@@ -45,6 +45,20 @@ export type SiteSettings = {
 export type Area = { title: string; items: string[] };
 export type Step = { title: string; text: string };
 export type Faq = { question: string; answer: string };
+
+/** A plan's landing page: the searchable page that leads to its booking page */
+export type LandingPage = {
+  /** Plan code from Sessions & booking */
+  plan: string;
+  slug: string;
+  title: string;
+  sub: string;
+  seoTitle: string;
+  seoDescription: string;
+  intro: string[];
+  sections: { heading: string; body: string[]; points?: string[] }[];
+  faq: Faq[];
+};
 export type ResearchNote = { text: string; source: string };
 export type Registration = { label: string; value: string; badge?: string };
 export type LabelledParagraph = { label: string; text: string };
