@@ -173,7 +173,7 @@ function confirmPayment(d) {
       emailHtml('Action needed', 'A patient has paid, but this booking needs your attention.', [
         ['Reference', r.Reference], ['Client', r.Name + ' (' + r.Phone + ')'], ['Email', r.Email],
         ['Session', r.Session], ['When', r.When], ['Paid', 'Rs ' + d.amount + ' · ' + d.paymentId], ['Reason', why],
-      ], '', '', 'Please call the patient to arrange a time, or refund from your Razorpay dashboard.', true));
+      ], '', '', 'Please call the patient to arrange a new time. (Fees are not refunded; only a duplicate or wrong amount is returned.)', true));
     sendMail(r.Email, 'We have received your payment ' + r.Reference,
       emailHtml('Payment received', 'Dear ' + first(r.Name) + ', thank you. We have received your payment of Rs ' + esc(d.amount) + '.', [
         ['Reference', r.Reference], ['Payment ID', d.paymentId],

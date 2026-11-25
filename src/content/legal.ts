@@ -187,7 +187,7 @@ export function legalDocs(s: SiteSettings): LegalDoc[] {
         {
           heading: "4. Bookings and payment",
           points: [
-            "Fees are shown before you pay, are in Indian Rupees, and are final and inclusive of all taxes.",
+            "Fees are shown before you pay, are in Indian Rupees, inclusive of all taxes, and non-refundable. Sessions can be rescheduled instead.",
             "Payment is taken in advance. Your session is confirmed once payment is received (online payments) or verified (UPI transfers).",
             "While you pay, your chosen time is held for a few minutes. If payment is not completed, the time is released.",
             "Online payments are processed by Razorpay. We never see or store your card, UPI or bank details.",
@@ -195,7 +195,7 @@ export function legalDocs(s: SiteSettings): LegalDoc[] {
         },
         {
           heading: "5. Cancellations and refunds",
-          body: ["Please see our [cancellation and refund policy](/cancellation-and-refunds)."],
+          body: ["Fees are not refunded; if you need to cancel, your session is rescheduled to a later date of your choice. See our [cancellation and refund policy](/cancellation-and-refunds)."],
         },
         {
           heading: "6. Confidentiality",
@@ -246,35 +246,32 @@ export function legalDocs(s: SiteSettings): LegalDoc[] {
     {
       slug: "cancellation-and-refunds",
       title: "Cancellation and refund policy",
-      sub: "What happens if you need to change your session, or if we do.",
+      sub: "Sessions are not refunded, but can always be rescheduled to a later date.",
       seoTitle: "Cancellation and Refund Policy",
-      seoDescription: `How cancellations, rescheduling and refunds work for sessions booked with ${s.legalName}.`,
+      seoDescription: `Fees for sessions with ${s.legalName} are non-refundable; sessions can be rescheduled to a later date at no extra cost. How to reschedule.`,
       updated: LEGAL_UPDATED,
       sections: [
         {
-          heading: "If you need to cancel or change",
+          heading: "No refunds",
           body: [
-            "Fees are paid in advance and are final. If you need to cancel, your session is **rescheduled to a later date of your choice**, at no extra cost.",
-            `Please tell us as early as you can, by email to [${s.email}](mailto:${s.email}) or on phone or WhatsApp at [${s.phoneDisplay}](tel:${s.phone.replace(/\s/g, "")}), with your booking reference.`,
+            "All fees are paid in advance and are **non-refundable**. Instead of a refund, your session can be **rescheduled to a later date of your choice**, at no extra cost.",
+          ],
+        },
+        {
+          heading: "How to reschedule",
+          body: [
+            `Please tell us as early as you can, by email to [${s.email}](mailto:${s.email}) or on phone or WhatsApp at [${s.phoneDisplay}](tel:${s.phone.replace(/\s/g, "")}), with your booking reference, and we will agree a new date with you.`,
           ],
         },
         {
           heading: "If we need to cancel",
-          body: [
-            "If we have to cancel or cannot hold your session, you can choose to reschedule or to receive a **full refund**.",
-          ],
+          body: ["If we have to cancel or cannot hold your session, we reschedule it to a date of your choice, at no extra cost."],
         },
         {
           heading: "Payment problems",
           points: [
-            "**Paid, but the time was taken:** if your chosen time was booked by someone else while you were paying, we contact you to arrange another time, or give you a full refund if you prefer.",
-            "**Charged twice, or charged for a failed payment:** you receive a full refund of the extra amount. Failed payments that were debited are usually reversed automatically by your bank or Razorpay.",
-          ],
-        },
-        {
-          heading: "How refunds are paid",
-          body: [
-            "Approved refunds are made to the original payment method. We start the refund within 7 working days; your bank may then take a few more working days to show it.",
+            "**Paid, but the time was taken:** if your chosen time was booked by someone else while you were paying, we contact you to arrange another time.",
+            "**Charged twice, or charged for a failed payment:** this is a payment error, not a session fee. Any duplicate or wrongly debited amount is returned to your original payment method, as banking rules require; failed payments are usually reversed automatically by your bank or Razorpay.",
           ],
         },
         {
