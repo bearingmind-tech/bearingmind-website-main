@@ -106,7 +106,7 @@ export const homeDefaults: HomeContent = {
     ],
     portraitAlt: "M H Sharieff, PhD, Chief Counselling Psychologist, BearingMind Health Services",
     registrations: [
-      { label: "Udyam Registration", value: "UDYAM-KR-03-0772965" },
+      { label: "Udyam Registration (MSME)", value: "UDYAM-KR-03-0772965", badge: "/images/msme.png" },
       {
         label: "National Commission for Allied and Healthcare Professions (NCAHP)",
         value: "Id No. 99-8872-0717-5516",
