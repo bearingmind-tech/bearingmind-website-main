@@ -47,3 +47,11 @@
 .dark .mark {
   filter: brightness(1.6) saturate(0.8);
 }
+
+.dark .more {
+  color: var(--gold);
+}
+
+.dark .more:hover {
+  color: var(--white);
+}

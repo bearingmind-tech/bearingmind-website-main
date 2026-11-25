@@ -40,9 +40,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(251, 252, 251, 0.94);
-  backdrop-filter: saturate(1.4) blur(10px);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  background: var(--paper);
   border-bottom: 1px solid transparent;
   transition: border-color 0.25s, box-shadow 0.25s;
 }

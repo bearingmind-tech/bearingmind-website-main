@@ -58,6 +58,10 @@
   gap: 10px;
 }
 
+.col ul:last-child {
+  margin-bottom: 0;
+}
+
 .contact {
   font-style: normal;
   display: grid;

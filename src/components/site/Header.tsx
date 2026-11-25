@@ -56,7 +56,7 @@ export function Header({ site }: Props) {
 
   return (
     <>
-      <div className={styles.utility}>
+      <div className={styles.utility} role="region" aria-label="Contact details">
         <div className={`wrap ${styles.utilityInner}`}>
           <a href={site.mapUrl} target="_blank" rel="noopener" className={styles.uLink}>
             <PinIcon size={15} /> {site.address.street}, {site.address.locality}

@@ -61,14 +61,14 @@ export function PostView({ post, site, base, sectionName }: { post: Post; site: 
       ) : null}
 
       {post.author?.name && (
-        <aside className={styles.author}>
+        <section className={styles.author} aria-label="About the author">
           {post.author.imageUrl && <Image src={`${post.author.imageUrl}?w=160&h=160&fit=crop&auto=format`} alt="" width={80} height={80} />}
           <div>
             <p className={styles.authorName}>{post.author.name}</p>
             {post.author.role && <p className={styles.authorRole}>{post.author.role}</p>}
             {post.author.bio && <p className={styles.authorBio}>{post.author.bio}</p>}
           </div>
-        </aside>
+        </section>
       )}
 
       <p className={styles.cta}>

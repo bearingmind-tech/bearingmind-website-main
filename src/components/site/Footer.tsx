@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { BookingContent, SiteSettings } from "@/content/types";
+import { getPosts } from "@/lib/content";
 import { telHref, waHref } from "@/lib/links";
 import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "../ui/Icons";
 import styles from "./Footer.module.css";
@@ -39,8 +40,10 @@ function profileName(url: string) {
   }
 }
 
-export function Footer({ site, booking }: { site: SiteSettings; booking: BookingContent }) {
+export async function Footer({ site, booking }: { site: SiteSettings; booking: BookingContent }) {
   const a = site.address;
+  /* No link to an empty Articles page */
+  const hasArticles = (await getPosts("article")).length > 0;
   return (
     <footer className={styles.footer}>
       <div className={`wrap ${styles.top}`}>
@@ -70,7 +73,7 @@ export function Footer({ site, booking }: { site: SiteSettings; booking: Booking
           </ul>
           <p className={styles.head}>Read</p>
           <ul>
-            {read.map((l) => (
+            {read.filter((l) => hasArticles || l.href !== "/articles").map((l) => (
               <li key={l.href}><Link href={l.href}>{l.label}</Link></li>
             ))}
           </ul>
