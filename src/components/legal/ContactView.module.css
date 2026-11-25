@@ -1,0 +1,129 @@
+.wrap {
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: var(--section-y);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1.35fr);
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--tide);
+}
+
+.card svg {
+  flex: none;
+  color: var(--bronze);
+}
+
+.card span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.card b {
+  color: var(--head);
+  font-weight: 600;
+}
+
+.card small {
+  color: var(--muted);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 80px);
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.h2 {
+  margin: 0 0 14px;
+  font-size: 1.45rem;
+  color: var(--head);
+}
+
+.cols p {
+  line-height: 1.7;
+}
+
+.cols p + .h2 {
+  margin-top: 28px;
+}
+
+.hours {
+  margin: 0;
+  display: grid;
+}
+
+.hours div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.hours dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.hours a,
+.cols a {
+  color: var(--tide-deep);
+}
+
+.note {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.crisis {
+  margin-top: 28px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--bronze);
+  background: var(--fog);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 1020px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hours div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}

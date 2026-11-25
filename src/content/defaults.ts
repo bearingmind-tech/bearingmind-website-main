@@ -420,7 +420,7 @@ export const bookingDefaults: BookingContent = {
     phoneLabel: "Phone",
     phonePlaceholder: "10-digit mobile number",
     emailLabel: "Email",
-    consent: "I agree to be contacted about this booking, and to my details being handled as described in {privacy}.",
+    consent: "I agree to the {terms}, to be contacted about this booking, and to my details being handled as described in {privacy}.",
     detailsButton: "Continue",
     scheduleHeading: "Schedule",
     sessionTypeLabel: "Session type",

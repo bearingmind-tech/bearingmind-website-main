@@ -1,11 +1,12 @@
+import Link from "next/link";
 import type { HomeContent, SiteSettings } from "@/content/types";
 import { SectionHead } from "../ui/SectionHead";
 import { ShieldIcon } from "../ui/Icons";
 import styles from "./Privacy.module.css";
 
-type Props = { c: HomeContent["privacy"]; email: SiteSettings["email"]; withHead?: boolean; open?: boolean };
+type Props = { c: HomeContent["privacy"]; site: SiteSettings; withHead?: boolean; open?: boolean };
 
-export function Privacy({ c, email, withHead = true, open = false }: Props) {
+export function Privacy({ c, site, withHead = true, open = false }: Props) {
   return (
     <section className={styles.privacy} id="privacy" aria-labelledby="pv-h">
       <div className={`wrap ${styles.grid}`}>
@@ -31,10 +32,13 @@ export function Privacy({ c, email, withHead = true, open = false }: Props) {
             <summary>{c.grievanceTitle}</summary>
             <div className={styles.body}>
               <p>
-                {c.grievance} · <a href={`mailto:${email}`}>{email}</a>
+                {c.grievance}, Grievance Officer · <a href={`mailto:${site.email}`}>{site.email}</a> · <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phoneDisplay}</a>
               </p>
             </div>
           </details>
+          <Link href="/privacy" className={`textlink ${styles.full}`}>
+            Read the full privacy policy
+          </Link>
         </div>
       </div>
     </section>

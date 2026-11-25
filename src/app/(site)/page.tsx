@@ -38,7 +38,7 @@ export default async function HomePage() {
       <HowItWorks c={home.how} />
       <Sessions c={home.sessions} booking={booking} site={site} more />
       <Proof c={home.proof} />
-      <Privacy c={home.privacy} email={site.email} />
+      <Privacy c={home.privacy} site={site} />
       <Faq c={home.faq} more />
       <ResearchNotes c={home.research} />
     </>

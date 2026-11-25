@@ -550,7 +550,7 @@ export function BookingFlow({ cfg, site, type }: { cfg: BookingContent; site: Si
             )}
             <label className="check">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-              <span>{withTokens(copy.consent, { privacy: <Link href="/privacy">Your privacy</Link> })}</span>
+              <span>{withTokens(copy.consent, { privacy: <Link href="/privacy">our privacy policy</Link>, terms: <Link href="/terms">terms of service</Link> })}</span>
             </label>
             <div className="err">{errs.consent}</div>
             <div className="err" role="alert">{errs.details}</div>

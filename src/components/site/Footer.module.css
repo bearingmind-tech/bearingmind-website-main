@@ -114,6 +114,22 @@
   margin: 0;
 }
 
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.legal a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+.legal a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
 .credit a {
   color: var(--gold);
   text-decoration: underline;

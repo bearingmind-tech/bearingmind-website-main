@@ -13,6 +13,7 @@ const explore = [
   { label: "Sessions", href: "/sessions" },
   { label: "For organisations", href: "/organisations" },
   { label: "Questions", href: "/faq" },
+  { label: "Contact", href: "/contact" },
 ];
 const read = [
   { label: "Blog", href: "/blog" },
@@ -124,6 +125,12 @@ export async function Footer({ site, booking }: { site: SiteSettings; booking: B
           <p>
             © {new Date().getFullYear()} {site.footerRights}
           </p>
+          <nav className={styles.legal} aria-label="Policies">
+            <Link href="/privacy">Privacy policy</Link>
+            <Link href="/terms">Terms</Link>
+            <Link href="/cancellation-and-refunds">Cancellation and refunds</Link>
+            <Link href="/contact">Contact</Link>
+          </nav>
           <p className={styles.credit}>
             Designed and maintained by{" "}
             <a href="https://www.ariartech.com" target="_blank" rel="noopener">

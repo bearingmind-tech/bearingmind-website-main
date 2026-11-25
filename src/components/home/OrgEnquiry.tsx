@@ -79,7 +79,7 @@ export function OrgEnquiry({ cta, initiallyOpen = false }: { cta: string; initia
         <label className="check">
           <input type="checkbox" name="consent" />
           <span>
-            I agree to be contacted about this enquiry, as described in <Link href="/#privacy">Your privacy</Link>.
+            I agree to be contacted about this enquiry, as described in our <Link href="/privacy">privacy policy</Link>.
           </span>
         </label>
         <div className="err">{errors.consent}</div>

@@ -23,7 +23,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: u("/sessions"), changeFrequency: "monthly", priority: 0.9 },
     { url: u("/organisations"), changeFrequency: "monthly", priority: 0.8 },
     { url: u("/faq"), changeFrequency: "monthly", priority: 0.7 },
+    { url: u("/contact"), changeFrequency: "yearly", priority: 0.6 },
     { url: u("/privacy"), changeFrequency: "yearly", priority: 0.3 },
+    { url: u("/terms"), changeFrequency: "yearly", priority: 0.3 },
+    { url: u("/cancellation-and-refunds"), changeFrequency: "yearly", priority: 0.3 },
     { url: u("/blog"), lastModified: newest("blog"), changeFrequency: "weekly", priority: 0.7 },
     ...(posts.some((p) => p.kind === "article") ? [{ url: u("/articles"), lastModified: newest("article"), changeFrequency: "weekly" as const, priority: 0.7 }] : []),
     ...posts.map((p) => ({

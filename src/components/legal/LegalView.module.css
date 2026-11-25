@@ -1,0 +1,84 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: var(--section-y);
+}
+
+.updated {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.section {
+  padding-top: 28px;
+}
+
+.h2 {
+  margin-bottom: 12px;
+  font-size: 1.45rem;
+  color: var(--head);
+}
+
+.doc p,
+.doc li {
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.doc p {
+  margin: 0 0 12px;
+}
+
+.doc ul {
+  margin: 0 0 12px;
+  padding-left: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.doc a {
+  color: var(--tide-deep);
+}
+
+.related {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.related p {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.related a {
+  color: var(--head);
+}
+
+@media (max-width: 900px) {
+  .wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .related {
+    position: static;
+  }
+}

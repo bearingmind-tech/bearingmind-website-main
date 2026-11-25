@@ -132,7 +132,7 @@ export const bookingSettings = defineType({
       title: "Booking page text",
       type: "object",
       group: "form",
-      description: "Write {call}, {whatsapp}, {phone} or {privacy} where links should appear.",
+      description: "Write {call}, {whatsapp}, {phone}, {privacy} or {terms} where links should appear.",
       fields: [
         str("heading", "Heading"),
         txt("lede", "Intro", 2),
