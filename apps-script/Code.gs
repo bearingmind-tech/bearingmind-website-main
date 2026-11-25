@@ -5,6 +5,9 @@
    this script with a secret key; visitors never reach the sheet.
 
    What it does
+   - Runs four separate booking systems, one per plan, each with its own
+     sheet tab and (optionally) its own Google Calendar. A time booked in
+     one plan never blocks another plan.
    - Holds a time slot for a few minutes while the patient pays.
    - Confirms the booking once payment is verified (Razorpay), or records
      the UTR for you to check (manual UPI, until Razorpay is switched on).
@@ -29,18 +32,24 @@
 
 const CONFIG = {
   NOTIFY_EMAIL: 'contact@bearingmind.com',     // where your booking alerts go
-  ASSOCIATE_EMAIL: '',                          // optional: associate consultant, copied on Children and family bookings
+  ASSOCIATE_EMAIL: '',                          // optional: associate consultant, copied on Children with Parents bookings
   PRACTICE: 'BearingMind Health Services',
   ADDRESS: '2 Rose Lane, Richmond Town, Bengaluru 560025',
   PHONE: '+91 94822 23786',
   WHATSAPP: 'https://wa.me/919482223786',
   SITE: 'https://www.bearingmind.com',
-  CALENDAR_ID: 'primary',
+  // One entry per plan (the website's plan code). Each plan has its own sheet tab and calendar.
+  // Calendar: 'primary' is your main Google Calendar; paste another calendar's ID to keep a plan separate.
+  PLANS: {
+    dining:       { tab: 'Public Figures',         calendar: 'primary', title: 'Private dinner' },
+    professional: { tab: 'Employed Professionals', calendar: 'primary', title: 'Employed Professionals session' },
+    homemaker:    { tab: 'Homemakers',             calendar: 'primary', title: 'Homemakers session' },
+    children:     { tab: 'Children with Parents',  calendar: 'primary', title: 'Children with Parents session', associate: true },
+  },
   TZ: 'Asia/Kolkata',
   CRISIS: 'This service is not for emergencies. If you or someone you know is in crisis, call Tele-MANAS on 14416 or go to the nearest hospital.',
 };
 
-const BOOKINGS = 'Bookings';
 const ORGS = 'Organisation enquiries';
 const HEADERS = ['Received', 'Reference', 'Status', 'Hold until', 'Name', 'Phone', 'Email', 'Session', 'Members',
   'Format', 'Format code', 'Date', 'Start', 'End', 'When', 'Main concern', 'Notes', 'Fee (INR)', 'Payment method',
@@ -99,6 +108,7 @@ function doPost(e) {
    --------------------------------------------------------------------- */
 function hold(d) {
   if (!d.ref || !d.date || !d.time || !d.email || !d.name) return { ok: false, error: 'missing_fields' };
+  if (!CONFIG.PLANS[d.type]) return { ok: false, error: 'invalid_session' };
 
   const cache = CacheService.getScriptCache();
   const ipKey = 'ip:' + String(d.ip || 'unknown');
@@ -109,12 +119,12 @@ function hold(d) {
   const now = Date.now();
   const email = String(d.email).toLowerCase();
   const rows = readBookings();
-  if (bookedSlots(rows, now).indexOf(d.date + ' ' + d.time) !== -1) return { ok: false, error: 'slot_taken' };
+  if (bookedSlots(rows, now).indexOf(d.type + ' ' + d.date + ' ' + d.time) !== -1) return { ok: false, error: 'slot_taken' };
   const active = rows.filter(r => r.Email.toLowerCase() === email && r.Status === S.PENDING && r.holdUntilMs > now).length;
   if (active >= MAX_HOLDS_PER_EMAIL) return { ok: false, error: 'too_many' };
 
   const holdUntil = new Date(now + Number(d.holdMinutes || 15) * 60000);
-  appendBooking({
+  appendBooking(d.type, {
     'Received': new Date(), 'Reference': d.ref, 'Status': S.PENDING, 'Hold until': holdUntil,
     'Name': clean(d.name), 'Phone': text(d.phone), 'Email': clean(email), 'Session': clean(d.session),
     'Members': clean(d.members), 'Format': clean(d.modeLabel), 'Format code': clean(d.mode),
@@ -152,7 +162,7 @@ function confirmPayment(d) {
   };
 
   const now = Date.now();
-  const clash = readBookings().some(o => o.row !== r.row && o.Date === r.Date && o.Start === r.Start && holdsSlot(o, now));
+  const clash = readBookings().some(o => sameSlot(o, r) && holdsSlot(o, now));
   const amountOk = Number(d.amount) === Number(r['Fee (INR)']);
 
   if (clash || !amountOk) {
@@ -185,23 +195,23 @@ function upiSubmit(d) {
   if (r.Status !== S.PENDING && r.Status !== S.EXPIRED) return { ok: true };
   if (r.Status === S.EXPIRED) {
     const now = Date.now();
-    const clash = readBookings().some(o => o.row !== r.row && o.Date === r.Date && o.Start === r.Start && holdsSlot(o, now));
+    const clash = readBookings().some(o => sameSlot(o, r) && holdsSlot(o, now));
     if (clash) return { ok: false, error: 'slot_taken' };
   }
   setCells(r, { 'Status': S.VERIFY, 'Payment method': 'UPI (manual)', 'Payment ID / UTR': text(d.utr), 'Hold until': '' });
 
-  sendMail(CONFIG.NOTIFY_EMAIL, 'New booking ' + r.Reference + ': verify UPI payment of Rs ' + r['Fee (INR)'],
+  sendMail(CONFIG.NOTIFY_EMAIL, 'New ' + r.plan.tab + ' booking ' + r.Reference + ': verify UPI payment of Rs ' + r['Fee (INR)'],
     emailHtml('Verify a UPI payment', 'A new booking is waiting for you to check the payment.', [
       ['Reference', r.Reference], ['Client', r.Name + ' (' + r.Phone + ')'], ['Session', r.Session + ', ' + r.Format],
       ['When', r.When], ['Amount', 'Rs ' + r['Fee (INR)']], ['UTR', d.utr],
-    ], sheetUrl(), 'Open the Bookings sheet',
+    ], sheetUrl(), 'Open the ' + r.plan.tab + ' sheet',
     'Check the payment in your UPI app, then set Status to "Confirmed". The patient will be emailed and invited automatically. Their main concern and notes are in the sheet.', true));
 
   sendMail(r.Email, 'We have received your booking ' + r.Reference,
     emailHtml('Booking received', 'Dear ' + first(r.Name) + ', thank you. We have received your booking request for ' + esc(r.When) + '.', [
       ['Reference', r.Reference],
     ], '', '',
-    'We will confirm by email once your UPI payment is verified, usually within a few hours.' + venueLine(r['Format code'], false) +
+    'We will confirm by email once your UPI payment is verified, usually within a few hours.' + venueLine(r, false) +
     '<br><br>If you need to cancel, your session will be rescheduled to a later date of your choice.'));
   return { ok: true };
 }
@@ -222,27 +232,29 @@ function sendConfirmation(r) {
   if (r['Payment ID / UTR']) rows.push(['Payment reference', r['Payment ID / UTR']]);
   if (r['Format code'] === 'phone') rows.push(['Phone', r.Phone]);
 
-  sendMail(r.Email, 'Your BearingMind session is confirmed: ' + r.When,
-    emailHtml('Your session is confirmed', 'Dear ' + first(r.Name) + ', thank you. Your session is confirmed.', rows,
+  const dinner = r['Format code'] === 'dining';
+  sendMail(r.Email, (dinner ? 'Your private evening is reserved: ' : 'Your BearingMind session is confirmed: ') + r.When,
+    emailHtml(dinner ? 'Your evening is reserved' : 'Your session is confirmed',
+      'Dear ' + first(r.Name) + ', thank you. ' + (dinner ? 'Your private dinner consultation is reserved.' : 'Your session is confirmed.'), rows,
       ev.meet, ev.meet ? 'Join on Google Meet' : '',
-      (ev.meet ? 'The link is also in your calendar invite.' : '') + venueLine(r['Format code'], true) +
+      (ev.meet ? 'The link is also in your calendar invite.' : '') + venueLine(r, true) +
       '<br><br>If you need to cancel, your session will be rescheduled to a later date of your choice. ' +
       'Reply to this email or WhatsApp ' + esc(CONFIG.PHONE) + ' for any change.'));
 
-  sendMail(CONFIG.NOTIFY_EMAIL, 'Confirmed: ' + r.Reference + ', ' + r.When,
+  sendMail(CONFIG.NOTIFY_EMAIL, 'Confirmed (' + r.plan.tab + '): ' + r.Reference + ', ' + r.When,
     emailHtml('New confirmed booking', 'Payment verified. The session is in your calendar.', [
       ['Reference', r.Reference], ['Client', r.Name + ' (' + r.Phone + ')'], ['Email', r.Email],
       ['Session', r.Session], ['Format', r.Format], ['When', r.When],
       ['Amount', 'Rs ' + (r['Amount paid (INR)'] || r['Fee (INR)'])], ['Payment', r['Payment ID / UTR']],
-    ], sheetUrl(), 'Open the Bookings sheet',
+    ], sheetUrl(), 'Open the ' + r.plan.tab + ' sheet',
     'Main concern and notes are in the sheet, kept out of email for privacy.' +
     (r['Format code'] === 'dining' ? ' Remember to send the hotel details.' : ''), true));
 
-  if (r['Format code'] === 'inperson' && CONFIG.ASSOCIATE_EMAIL) {
-    sendMail(CONFIG.ASSOCIATE_EMAIL, 'Children and family session: ' + r.When,
-      emailHtml('New session', 'A Children and family session has been booked.', [
+  if (associateFor(r)) {
+    sendMail(CONFIG.ASSOCIATE_EMAIL, 'Children with Parents session: ' + r.When,
+      emailHtml('New session', 'A Children with Parents session has been booked (' + r.Format + ').', [
         ['Reference', r.Reference], ['Parent or guardian', r.Name + ' (' + r.Phone + ')'], ['Email', r.Email], ['When', r.When],
-      ], '', '', 'Please share the venue with the family.', true));
+      ], '', '', r['Format code'] === 'inperson' ? 'Please share the venue with the family.' : 'The Google Meet link is in the calendar invite.', true));
   }
   return ev;
 }
@@ -251,9 +263,9 @@ function createEvent(r) {
   const start = r.Date + 'T' + r.Start + ':00+05:30';
   const end = r.Date + 'T' + (r.End || r.Start) + ':00+05:30';
   const attendees = [{ email: r.Email, displayName: r.Name }];
-  if (r['Format code'] === 'inperson' && CONFIG.ASSOCIATE_EMAIL) attendees.push({ email: CONFIG.ASSOCIATE_EMAIL });
+  if (associateFor(r)) attendees.push({ email: CONFIG.ASSOCIATE_EMAIL });
   const event = {
-    summary: 'BearingMind session · ' + r.Name,
+    summary: 'BearingMind · ' + r.plan.title + ' · ' + r.Name,
     description: r.Session + '\n' + r.Format + '\nReference ' + r.Reference +
       (r['Format code'] === 'phone' ? '\nPhone: ' + r.Phone : '') + '\n\n' + CONFIG.PRACTICE + ' · ' + CONFIG.PHONE,
     start: { dateTime: start, timeZone: CONFIG.TZ },
@@ -266,14 +278,14 @@ function createEvent(r) {
   if (r['Format code'] === 'meet') {
     event.conferenceData = { createRequest: { requestId: r.Reference + '-' + Date.now(), conferenceSolutionKey: { type: 'hangoutsMeet' } } };
   }
-  const created = Calendar.Events.insert(event, CONFIG.CALENDAR_ID, { conferenceDataVersion: 1, sendUpdates: 'all' });
+  const created = Calendar.Events.insert(event, r.plan.calendar, { conferenceDataVersion: 1, sendUpdates: 'all' });
   return { id: created.id, meet: created.hangoutLink || '' };
 }
 
 function removeEvent(r) {
   if (!r['Calendar event']) return;
   try {
-    Calendar.Events.remove(CONFIG.CALENDAR_ID, r['Calendar event'], { sendUpdates: 'all' });
+    Calendar.Events.remove(r.plan.calendar, r['Calendar event'], { sendUpdates: 'all' });
   } catch (err) {
     console.error('Could not remove event: ' + err);
   }
@@ -284,7 +296,7 @@ function removeEvent(r) {
 function handleEdit(e) {
   if (!e || !e.range) return;
   const sh = e.range.getSheet();
-  if (sh.getName() !== BOOKINGS || e.range.getRow() < 2) return;
+  if (!planByTab(sh.getName()) || e.range.getRow() < 2) return;
   const statusCol = colIndex(sh, 'Status');
   if (e.range.getColumn() !== statusCol || e.range.getNumColumns() !== 1) return;
 
@@ -352,28 +364,31 @@ function setup() {
     props.setProperty('SCRIPT_SECRET', secret);
   }
 
-  const sh = sheet(BOOKINGS, HEADERS);
-  sheet(ORGS, ORG_HEADERS);
-  const statusCol = colIndex(sh, 'Status');
-  const rule = SpreadsheetApp.newDataValidation()
-    .requireValueInList([S.PENDING, S.VERIFY, S.CONFIRMED, S.COMPLETED, S.ATTENTION, S.CANCELLED, S.RESCHEDULED, S.EXPIRED], true)
-    .setAllowInvalid(false).build();
-  sh.getRange(2, statusCol, sh.getMaxRows() - 1, 1).setDataValidation(rule);
+  Object.keys(CONFIG.PLANS).forEach(key => {
+    const sh = sheet(CONFIG.PLANS[key].tab, HEADERS);
+    const statusCol = colIndex(sh, 'Status');
+    const rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList([S.PENDING, S.VERIFY, S.CONFIRMED, S.COMPLETED, S.ATTENTION, S.CANCELLED, S.RESCHEDULED, S.EXPIRED], true)
+      .setAllowInvalid(false).build();
+    sh.getRange(2, statusCol, sh.getMaxRows() - 1, 1).setDataValidation(rule);
 
-  const range = sh.getRange(2, 1, sh.getMaxRows() - 1, HEADERS.length);
-  const colour = (status, bg) => SpreadsheetApp.newConditionalFormatRule()
-    .whenFormulaSatisfied('=$' + columnLetter(statusCol) + '2="' + status + '"').setBackground(bg).setRanges([range]).build();
-  sh.setConditionalFormatRules([
-    colour(S.CONFIRMED, '#E3F0E8'), colour(S.COMPLETED, '#EDF2EE'), colour(S.VERIFY, '#FFF4D6'),
-    colour(S.ATTENTION, '#F8DADA'), colour(S.PENDING, '#F4F6F5'), colour(S.EXPIRED, '#FAFAFA'),
-    colour(S.CANCELLED, '#FAFAFA'), colour(S.RESCHEDULED, '#FAFAFA'),
-  ]);
+    const range = sh.getRange(2, 1, sh.getMaxRows() - 1, HEADERS.length);
+    const colour = (status, bg) => SpreadsheetApp.newConditionalFormatRule()
+      .whenFormulaSatisfied('=$' + columnLetter(statusCol) + '2="' + status + '"').setBackground(bg).setRanges([range]).build();
+    sh.setConditionalFormatRules([
+      colour(S.CONFIRMED, '#E3F0E8'), colour(S.COMPLETED, '#EDF2EE'), colour(S.VERIFY, '#FFF4D6'),
+      colour(S.ATTENTION, '#F8DADA'), colour(S.PENDING, '#F4F6F5'), colour(S.EXPIRED, '#FAFAFA'),
+      colour(S.CANCELLED, '#FAFAFA'), colour(S.RESCHEDULED, '#FAFAFA'),
+    ]);
+  });
+  sheet(ORGS, ORG_HEADERS);
 
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('handleEdit').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
   ScriptApp.newTrigger('expireHolds').timeBased().everyMinutes(10).create();
 
-  Calendar.Calendars.get(CONFIG.CALENDAR_ID);   // checks calendar access now, not on the first booking
+  // Checks calendar access now, not on the first booking
+  Object.keys(CONFIG.PLANS).forEach(key => Calendar.Calendars.get(CONFIG.PLANS[key].calendar));
 
   console.log('Setup complete.\n\nCopy this secret into Vercel as APPS_SCRIPT_SECRET:\n\n' + secret + '\n');
 }
@@ -404,14 +419,31 @@ function colIndex(sh, name) {
   return sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].indexOf(name) + 1;
 }
 
+/* Every plan's bookings; each record knows its plan from the tab it lives in. */
 function readBookings() {
-  const sh = sheet(BOOKINGS, HEADERS);
-  const last = sh.getLastRow();
-  if (last < 2) return [];
-  const head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
-  const shown = sh.getRange(2, 1, last - 1, head.length).getDisplayValues();
-  const raw = sh.getRange(2, 1, last - 1, head.length).getValues();
-  return shown.map((vals, i) => toRecord(head, vals, raw[i], i + 2, sh));
+  return Object.keys(CONFIG.PLANS).reduce((all, key) => {
+    const sh = sheet(CONFIG.PLANS[key].tab, HEADERS);
+    const last = sh.getLastRow();
+    if (last < 2) return all;
+    const head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+    const shown = sh.getRange(2, 1, last - 1, head.length).getDisplayValues();
+    const raw = sh.getRange(2, 1, last - 1, head.length).getValues();
+    return all.concat(shown.map((vals, i) => toRecord(head, vals, raw[i], i + 2, sh)));
+  }, []);
+}
+
+function planByTab(name) {
+  const key = Object.keys(CONFIG.PLANS).find(k => CONFIG.PLANS[k].tab === name);
+  return key ? Object.assign({ key: key }, CONFIG.PLANS[key]) : null;
+}
+
+/* Two bookings compete only within the same plan */
+function sameSlot(a, b) {
+  return !(a.sheet.getName() === b.sheet.getName() && a.row === b.row) && a.plan.key === b.plan.key && a.Date === b.Date && a.Start === b.Start;
+}
+
+function associateFor(r) {
+  return Boolean(r.plan.associate && CONFIG.ASSOCIATE_EMAIL);
 }
 
 function readRow(sh, row) {
@@ -421,7 +453,7 @@ function readRow(sh, row) {
 }
 
 function toRecord(head, shown, raw, row, sh) {
-  const r = { row: row, sheet: sh };
+  const r = { row: row, sheet: sh, plan: planByTab(sh.getName()) };
   head.forEach((h, j) => { r[h] = shown[j]; });
   const hu = raw[head.indexOf('Hold until')];
   r.holdUntilMs = hu instanceof Date ? hu.getTime() : 0;
@@ -441,11 +473,11 @@ function holdsSlot(r, now) {
 
 function bookedSlots(rows, now) {
   now = now || Date.now();
-  return (rows || readBookings()).filter(r => holdsSlot(r, now)).map(r => r.Date + ' ' + r.Start);
+  return (rows || readBookings()).filter(r => holdsSlot(r, now)).map(r => r.plan.key + ' ' + r.Date + ' ' + r.Start);
 }
 
-function appendBooking(values) {
-  const sh = sheet(BOOKINGS, HEADERS);
+function appendBooking(planKey, values) {
+  const sh = sheet(CONFIG.PLANS[planKey].tab, HEADERS);
   const head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
   sh.appendRow(head.map(h => (h in values ? values[h] : '')));
 }
@@ -502,9 +534,11 @@ function alertOnce(key, subject, rows, note) {
   sendMail(CONFIG.NOTIFY_EMAIL, subject, emailHtml('Action needed', esc(subject), rows, '', '', note, true));
 }
 
-function venueLine(code, confirmed) {
-  if (code === 'dining') return confirmed ? ' The venue details will be shared with you separately.' : ' The venue will be shared with your confirmation.';
-  if (code === 'inperson') return confirmed ? ' Our associate consultant will share the venue with you.' : ' Our associate consultant will share the venue with your confirmation.';
+function venueLine(r, confirmed) {
+  const code = r['Format code'];
+  if (code === 'dining') return confirmed ? ' The hotel details will be shared with you privately.' : ' The hotel details will be shared with your confirmation.';
+  if (code === 'inperson' && r.plan.associate) return confirmed ? ' Our associate consultant will share the venue with you.' : ' Our associate consultant will share the venue with your confirmation.';
+  if (code === 'inperson') return confirmed ? ' The venue details will be shared with you separately.' : ' The venue will be shared with your confirmation.';
   return '';
 }
 

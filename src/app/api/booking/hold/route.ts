@@ -27,6 +27,7 @@ export async function POST(req: Request) {
   const ref = newRef();
   const hold = await callBackend("hold", {
     ref,
+    type: v.type.key,
     name: clip(body.name, 80),
     phone: clip(body.phone, 20).replace(/\s/g, ""),
     email: clip(body.email, 120).toLowerCase(),

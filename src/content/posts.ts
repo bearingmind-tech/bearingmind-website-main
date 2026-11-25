@@ -151,7 +151,7 @@ burnout.body = pt(burnout.slug, [
   `> ${CRISIS}`,
   "## How we work with burnout at BearingMind",
   "Sessions are structured and goal-led. In the first session we agree on two or three clear goals. Progress is measured with brief, standard questionnaires at the **first and fourth sessions**, so you can see the change for yourself rather than take our word for it. You can read more about [our approach](/approach).",
-  "For working professionals, sessions run from 5 to 6 PM or 6 to 7 PM by phone or Google Meet, so they fit around your work. Senior leaders who prefer to talk away from the office can choose a [Conversational Dining Session](/sessions) over dinner in Bangalore. Everything you share is confidential, and we never confirm to your employer that you are a client without your written permission.",
+  "For employed professionals, sessions run online on Google Meet from 4 to 5 PM or 5 to 6 PM, Monday to Friday, so they fit around your work. Senior leaders and public figures who prefer to talk away from the office can reserve a [private dinner consultation](/book/public-figures) at a luxury hotel in Bangalore. Everything you share is confidential, and we never confirm to your employer that you are a client without your written permission.",
   "Our counselling and coaching is not a substitute for clinical therapy or psychiatric treatment. If you are unsure where to start, our guide on [whether to see a counsellor, psychologist or psychiatrist](/blog/counsellor-psychologist-or-psychiatrist) may help.",
   "When you are ready, you can [book a session](/book) online.",
 ]);

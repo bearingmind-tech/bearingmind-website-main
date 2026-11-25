@@ -67,7 +67,7 @@ export function organizationSchema(site: SiteSettings, home: HomeContent, bookin
           name: `${t.label}: ${o.label}`,
           ...(booking.showFeesPublicly ? { price: feeOf(o, o.members ? o.members[0] : 0), priceCurrency: "INR" } : {}),
           availability: "https://schema.org/InStock",
-          url: abs(site, `/book?type=${t.key}`),
+          url: abs(site, `/book/${t.slug}`),
           itemOffered: {
             "@type": "Service",
             name: `${t.label}: ${o.label}`,
@@ -90,12 +90,7 @@ export function openingHours(booking: BookingContent) {
   const byDay: [number, number][][] = DAY_NAMES.map(() => []);
   for (const t of booking.sessionTypes) {
     const longest = Math.max(...t.options.map((o) => o.minutes));
-    if (t.slots === "diningSlots") {
-      for (const sl of booking.diningSlots) for (const d of sl.days) byDay[d].push([toMin(sl.start), toMin(sl.end)]);
-    } else {
-      const src = booking[t.slots];
-      for (const time of src.times) for (const d of src.days) byDay[d].push([toMin(time), toMin(time) + longest]);
-    }
+    for (const time of t.times) for (const d of t.days) byDay[d].push([toMin(time), toMin(time) + longest]);
   }
   /* Merge windows per day (gaps of two hours or less count as one sitting), then group days that share identical hours */
   const groups = new Map<string, { days: string[]; opens: string; closes: string }>();

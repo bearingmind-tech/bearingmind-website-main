@@ -13,7 +13,7 @@ Do this signed in as **contact@bearingmind.com**. Everything stays in the practi
    2. Allow the permissions Google asks for (Sheets, Gmail send, Calendar, triggers).
    3. When it finishes, open **Execution log** and copy the long secret it prints. That is `APPS_SCRIPT_SECRET`.
 
-   Setup creates the **Bookings** and **Organisation enquiries** tabs, the Status dropdown and colours, and two automatic triggers: one sends the confirmation when you set Status to Confirmed, and one frees unpaid holds every 10 minutes.
+   Setup creates one tab per plan (**Public Figures**, **Employed Professionals**, **Homemakers**, **Children with Parents**) plus **Organisation enquiries**, the Status dropdown and colours, and two automatic triggers: one sends the confirmation when you set Status to Confirmed, and one frees unpaid holds every 10 minutes.
 4. **Deploy.**
    1. Click **Deploy → New deployment**, set the type to **Web app**, **Execute as: Me**, and **Who has access: Anyone**.
    2. Click **Deploy** and copy the **Web app URL** (it ends in `/exec`). That is `APPS_SCRIPT_URL`.
@@ -41,3 +41,7 @@ The URL stays the same. Saving alone does not update the live app.
 You can also add a phone or WhatsApp booking by hand. Fill in the row, including Email, Date (YYYY-MM-DD), Start, End and Format code (`meet`, `phone`, `dining` or `inperson`), then set Status to Confirmed. The patient is emailed and invited automatically.
 
 **Never share the Sheet link publicly.** The website only knows the web-app URL and the secret.
+
+## Separate calendars per plan (optional)
+
+Each plan is its own booking system: its own tab, and a time booked in one plan never blocks another. By default all four put events in your main Google Calendar. To keep a plan in its own calendar, create a calendar in Google Calendar (Settings → Add calendar), copy its **Calendar ID** (Settings for that calendar → Integrate calendar), paste it as that plan's `calendar` in `CONFIG.PLANS` at the top of `Code.gs`, then run **setup** again.

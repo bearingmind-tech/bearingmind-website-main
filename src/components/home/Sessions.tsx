@@ -25,8 +25,9 @@ export function Sessions({ c, booking, site, withHead = true, more = false }: Pr
           {booking.sessionTypes.map((t) => {
             const [from, amount] = !showFees ? ["", ""] : typeFee(booking, t).startsWith("From ") ? ["From", typeFee(booking, t).slice(5)] : ["", typeFee(booking, t)];
             return (
-              <article key={t.key} id={t.key} className={`${styles.card} ${t.featured ? styles.featured : ""}`} aria-labelledby={`s-${t.key}`}>
+              <article key={t.key} id={t.key} className={`${styles.card} plan-${t.theme}`} aria-labelledby={`s-${t.key}`}>
                 <header className={styles.top}>
+                  <p className={styles.tag}>{t.premium ? "By reservation" : t.options[0].modes.length > 1 ? "Online or in person" : "Online"}</p>
                   <h3 id={`s-${t.key}`} className={styles.name}>{t.label}</h3>
                   <p className={styles.short}>{t.short}</p>
                   {showFees && (
@@ -75,8 +76,8 @@ export function Sessions({ c, booking, site, withHead = true, more = false }: Pr
 
                 <div className={styles.foot}>
                   <p className={styles.note}>{t.note}</p>
-                  <Link className={`btn ${t.featured ? styles.ctaLight : ""} ${styles.cta}`} href={`/book?type=${t.key}`}>
-                    Book this session
+                  <Link className={`btn ${styles.cta}`} href={`/book/${t.slug}`}>
+                    Book now
                   </Link>
                 </div>
               </article>

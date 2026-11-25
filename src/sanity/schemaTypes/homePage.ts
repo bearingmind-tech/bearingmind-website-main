@@ -52,7 +52,7 @@ export const homePage = defineType({
         name: "registrations",
         title: "Registrations",
         type: "array",
-        of: [textBlock("registration", "Registration", [str("label", "Name"), str("value", "Number")])],
+        of: [textBlock("registration", "Registration", [str("label", "Name"), str("value", "Number"), str("badge", "Badge image path (optional, e.g. /images/mhfa-accredited.png)")])],
       }),
       txt("disclaimer", "Disclaimer", 2),
     ]),

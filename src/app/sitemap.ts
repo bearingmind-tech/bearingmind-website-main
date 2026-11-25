@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getPosts, getSite } from "@/lib/content";
+import { getBooking, getPosts, getSite } from "@/lib/content";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [site, posts] = await Promise.all([getSite(), getPosts()]);
+  const [site, posts, booking] = await Promise.all([getSite(), getPosts(), getBooking()]);
   const u = (p: string) => new URL(p, site.siteUrl).toString();
   /* Real dates only: a lastmod that changes on every crawl teaches Google to ignore it.
      Static pages carry none; listings use their newest post. */
@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: u("/"), changeFrequency: "weekly", priority: 1, images: [u("/og-image.png"), u("/images/m-h-sharieff.jpg")] },
     { url: u("/book"), changeFrequency: "weekly", priority: 0.9 },
+    ...booking.sessionTypes.map((t) => ({ url: u(`/book/${t.slug}`), changeFrequency: "weekly" as const, priority: 0.8 })),
     { url: u("/about"), changeFrequency: "monthly", priority: 0.9, images: [u("/images/m-h-sharieff.jpg")] },
     { url: u("/approach"), changeFrequency: "monthly", priority: 0.8 },
     { url: u("/sessions"), changeFrequency: "monthly", priority: 0.9 },

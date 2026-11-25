@@ -53,7 +53,10 @@ async function main() {
     console.log("✓ portrait uploaded");
   }
 
-  await put("bookingSettings", "bookingSettings", bookingDefaults);
+  /* premiumCopy has no Studio fields; it stays in the code defaults */
+  const booking: Partial<typeof bookingDefaults> = { ...bookingDefaults };
+  delete booking.premiumCopy;
+  await put("bookingSettings", "bookingSettings", booking);
 
   await put("author-sharieff", "author", {
     name: siteDefaults.founder.name,

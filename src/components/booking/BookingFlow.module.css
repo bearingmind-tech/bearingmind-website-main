@@ -1,138 +1,190 @@
+/* ---------- Page: white, one narrow column, one step at a time ---------- */
 .page {
-  padding-bottom: clamp(64px, 9vw, 112px);
+  --tide: var(--plan-deep);
+  --tide-deep: var(--plan-deep);
+  --bronze: var(--plan-deep);
+  --fog: var(--plan-soft);
+  --fog-line: var(--plan-line);
+  accent-color: var(--plan-deep);
+  background: var(--white);
+  padding: clamp(24px, 5vw, 48px) 0 clamp(64px, 9vw, 96px);
   scroll-margin-top: var(--header-h);
-  background: linear-gradient(var(--fog), var(--fog)) top / 100% 340px no-repeat, var(--paper);
 }
 
-/* ---------- Intro + stepper ---------- */
-.intro {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding-top: clamp(36px, 5vw, 64px);
+.wrap {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.head {
+  margin-bottom: 24px;
+}
+
+.back {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--plan-deep);
 }
 
 .title {
-  font-size: clamp(2.3rem, 4.6vw, 3.6rem);
-  letter-spacing: -0.02em;
+  margin-top: 14px;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  letter-spacing: -0.01em;
+  color: var(--plan-deep);
 }
 
-.lede {
-  margin: 12px 0 0;
+.sub {
+  margin: 6px 0 0;
   color: var(--muted);
-  font-size: 1.08rem;
 }
 
-.speak {
-  margin: 0;
+.progress {
+  margin-bottom: 28px;
+}
+
+.progress p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
   color: var(--muted);
-  font-size: var(--fs-small);
 }
 
-.stepper {
-  list-style: none;
-  margin: 36px 0 28px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.progress b {
+  font-weight: 600;
+  color: var(--head);
 }
 
-.stepper li {
-  position: relative;
+.bar {
+  display: block;
+  height: 4px;
+  border-radius: var(--pill);
+  background: var(--plan-soft);
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--plan);
+  transition: width 0.3s;
+}
+
+.next {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+.recap {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
   padding: 14px 16px;
-  background: var(--paper);
-  border: 1px solid var(--fog-line);
-  border-radius: var(--radius);
-  color: var(--muted);
+  border: 1px solid var(--plan-line);
+  border-radius: 12px;
+  background: var(--plan-soft);
 }
 
-.stepper li::after {
-  content: "";
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: -1px;
-  height: 2px;
-  border-radius: 2px;
-  background: transparent;
-}
-
-.stepper li.stepOn {
-  border-color: var(--tide);
-  color: var(--ink);
-}
-
-.stepper li.stepOn::after,
-.stepper li.stepDone::after {
-  background: var(--tide);
-}
-
-.dot {
-  flex: none;
+.recap span {
   display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--fog-line);
-  font-size: 0.85rem;
-  background: var(--white);
+  gap: 2px;
 }
 
-.stepOn .dot {
-  border-color: var(--tide);
-  color: var(--tide);
-}
-
-.stepDone .dot {
-  background: var(--tide);
-  border-color: var(--tide);
-  color: var(--white);
-}
-
-.stepText {
-  display: grid;
-  line-height: 1.3;
-}
-
-.stepText b {
+.recap b {
   font-weight: 500;
   color: var(--head);
 }
 
-.stepText small {
+.recap small {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.fine {
+  margin: 14px 0 0;
   font-size: 0.82rem;
+  color: var(--muted);
 }
 
-/* ---------- Layout ---------- */
-.layout {
+.help {
+  margin: 36px 0 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* Date chips: only the days this plan runs */
+.dates {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
 }
 
-.main {
-  min-width: 0;
-}
-
-.single {
-  grid-template-columns: minmax(0, 760px);
-  justify-content: center;
-}
-
-.card {
-  background: var(--white);
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: clamp(24px, 3.5vw, 40px);
-  box-shadow: var(--shadow-soft);
+  border-radius: 12px;
+  background: var(--white);
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.date small {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.date b {
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--head);
+}
+
+.date span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.date:hover:not(:disabled) {
+  border-color: var(--plan-deep);
+}
+
+.date[aria-pressed="true"] {
+  background: var(--plan-deep);
+  border-color: var(--plan-deep);
+}
+
+.date[aria-pressed="true"] small,
+.date[aria-pressed="true"] b,
+.date[aria-pressed="true"] span {
+  color: var(--white);
+}
+
+.date:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.date:focus-visible {
+  outline: 2px solid var(--plan-deep);
+  outline-offset: 2px;
 }
 
 .h2,
@@ -171,21 +223,12 @@
   color: var(--head);
 }
 
-/* Session type cards */
-.types {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.type,
 .row,
 .pill {
   position: relative;
   display: block;
 }
 
-.type input,
 .row input,
 .pill input {
   position: absolute;
@@ -195,40 +238,8 @@
   cursor: pointer;
 }
 
-.type span {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--paper);
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-
-.type b {
-  font-weight: 500;
-  color: var(--head);
-  line-height: 1.3;
-}
-
-.type small {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 0.84rem;
-}
-
-.type em {
-  margin-top: auto;
-  padding-top: 12px;
-  font-style: normal;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  color: var(--bronze);
-}
-
 /* Option rows */
+
 .rows {
   display: grid;
   border: 1px solid var(--line);
@@ -294,6 +305,7 @@
 }
 
 /* Format pills */
+
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -322,7 +334,7 @@
 }
 
 /* Checked + focus states */
-.type input:checked + span,
+
 .pill input:checked + span {
   border-color: var(--tide);
   background: var(--fog);
@@ -337,7 +349,6 @@
   border: 5.5px solid var(--tide);
 }
 
-.type input:focus-visible + span,
 .row input:focus-visible + span,
 .pill input:focus-visible + span {
   outline: 2px solid var(--tide);
@@ -345,6 +356,7 @@
 }
 
 /* Members counter */
+
 .counter {
   display: inline-flex;
   align-items: center;
@@ -386,117 +398,6 @@
 }
 
 /* Date + time */
-.when {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 24px;
-}
-
-.cal {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px;
-  background: var(--paper);
-}
-
-.calHead {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.calHead b {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.12rem;
-  color: var(--head);
-}
-
-.calHead span {
-  font-size: 0.76rem;
-  color: var(--muted);
-}
-
-.calGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-.dow {
-  text-align: center;
-  font-size: 0.72rem;
-  color: var(--muted);
-  padding-bottom: 4px;
-}
-
-.day {
-  position: relative;
-  aspect-ratio: 1;
-  min-height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--white);
-  font: inherit;
-  font-size: 0.92rem;
-  color: var(--ink);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.05;
-  padding: 2px;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.day small {
-  font-size: 0.58rem;
-  color: var(--bronze);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.day:hover:not(:disabled) {
-  border-color: var(--tide);
-}
-
-.day:disabled {
-  background: transparent;
-  color: #bac3c0;
-  border-color: transparent;
-  cursor: not-allowed;
-}
-
-.day[aria-pressed="true"] {
-  background: var(--tide);
-  border-color: var(--tide);
-  color: var(--white);
-}
-
-.day[aria-pressed="true"] small {
-  color: var(--gold);
-}
-
-.today::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--bronze);
-}
-
-.dayLabel {
-  margin: 0 0 12px;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  color: var(--head);
-}
 
 .times {
   display: grid;
@@ -549,6 +450,7 @@
 }
 
 /* Card footer */
+
 .cardFoot {
   display: flex;
   justify-content: space-between;
@@ -566,6 +468,7 @@
 }
 
 /* Details form */
+
 .formGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -586,6 +489,7 @@
 }
 
 /* Payment */
+
 .paySub {
   color: var(--muted);
   margin-bottom: 26px;
@@ -619,8 +523,6 @@
   height: auto;
 }
 
-
-
 .upiId {
   display: flex;
   gap: 10px;
@@ -641,9 +543,6 @@
   margin: 24px 0 0;
 }
 
-
-
-
 .cardFoot .ref {
   margin: 0;
 }
@@ -655,6 +554,7 @@
 }
 
 /* Done */
+
 .done {
   text-align: center;
 }
@@ -707,6 +607,7 @@
 }
 
 /* ---------- Payment step ---------- */
+
 .payCard {
   position: relative;
 }
@@ -888,6 +789,7 @@
 }
 
 /* Shown while the payment is being checked with Razorpay */
+
 .verifying {
   position: absolute;
   inset: 0;
@@ -943,6 +845,7 @@
 }
 
 /* ---------- Confirmation / receipt ---------- */
+
 .doneAmount dd {
   font-weight: 600;
 }
@@ -973,9 +876,11 @@
   .invoice {
     padding: 2px 16px;
   }
+
   .invTotal strong {
     font-size: 1.9rem;
   }
+
   .doneActions :global(.btn) {
     width: 100%;
     justify-content: center;
@@ -983,51 +888,48 @@
 }
 
 /* Print / save as PDF: only the receipt */
+
 @media print {
   :global(body > *:not(main)),
   :global(header),
   :global(footer),
-  .intro,
-  .stepper,
   .demo,
   .noPrint {
     display: none !important;
   }
-  .page {
-    background: none;
-    padding: 0;
-  }
-  .card {
-    box-shadow: none;
-    border: 0;
-    padding: 0;
-  }
+
   .done {
     text-align: left;
   }
+
   .doneList {
     max-width: none;
   }
+
   .doneText {
     margin: 20px 0 0;
     max-width: none;
   }
+
   .printHead {
     display: block;
     margin-bottom: 24px;
     padding-bottom: 16px;
     border-bottom: 2px solid var(--head);
   }
+
   .printHead p {
     margin: 0 0 4px;
     font-size: 0.85rem;
     color: var(--ink);
   }
+
   .printName.printName {
     font-family: var(--serif);
     font-size: 1.5rem;
     color: var(--head);
   }
+
   .printTitle.printTitle {
     margin-top: 14px;
     font-weight: 600;
@@ -1038,276 +940,93 @@
   }
 }
 
-/* ---------- Summary ---------- */
-.summary {
-  position: sticky;
-  top: calc(var(--header-h) + 20px);
-  background: var(--tide-deep);
-  color: var(--sage);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: var(--shadow-lift);
+/* One narrow column at every width */
+.formGrid {
+  grid-template-columns: 1fr;
 }
 
-.sumTitle {
-  font-size: 1.4rem;
-  color: var(--white);
-  margin-bottom: 18px;
+.row span {
+  grid-template-columns: 1fr auto;
+  gap: 4px 14px;
 }
 
-.sumList {
-  margin: 0;
+.row span > small {
+  grid-row: 2;
 }
 
-.sumList div {
-  padding: 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.92rem;
-}
-
-.sumList dt {
-  font-size: 0.8rem;
-  margin-bottom: 3px;
-}
-
-.sumList dd {
-  margin: 0;
-  color: var(--white);
-}
-
-.muted {
-  color: var(--sage);
-  opacity: 0.8;
-}
-
-.total {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
-}
-
-.total strong {
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  font-weight: 300;
-  color: var(--gold);
-}
-
-.breakdown {
-  margin: 2px 0 0;
-  text-align: right;
-  font-size: 0.82rem;
-}
-
-.policy {
-  list-style: none;
-  margin: 20px 0 0;
-  padding: 16px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  display: grid;
-  gap: 10px;
-  font-size: 0.84rem;
-}
-
-.policy li {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-}
-
-.policy svg {
-  flex: none;
-  color: var(--gold);
-  margin-top: 3px;
-}
-
-.policy b {
-  color: var(--white);
-  font-weight: 500;
-}
-
-/* ---------- Mobile sticky bar ---------- */
-.mobileBar {
-  display: none;
-}
-
-@media (max-width: 1020px) {
-  .layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  /* On phones the total lives in the bottom bar, so the full summary sits after the form */
-  .summary {
-    position: static;
-    padding: 20px 22px;
-  }
-  .mobileBar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 30;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px));
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--line);
-    box-shadow: 0 -10px 30px -20px rgba(14, 26, 22, 0.4);
-  }
-  .mobileBar div {
-    display: grid;
-    min-width: 0;
-  }
-  .mobileBar strong {
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--head);
-  }
-  .mobileBar small {
-    font-size: 0.78rem;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .mobileBar :global(.btn) {
-    flex: none;
-  }
-  .withBar .cardFoot :global(.btn) {
-    display: none;
-  }
-  .page {
-    padding-bottom: 120px;
-  }
-}
-
-@media (max-width: 760px) {
-  .stepper {
-    gap: 6px;
-  }
-  .stepper li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 12px;
-  }
-  .stepText small {
-    display: none;
-  }
-  .types {
-    grid-template-columns: 1fr;
-  }
-  .when {
-    grid-template-columns: 1fr;
-  }
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-  .upi {
-    grid-template-columns: 1fr;
-    justify-items: start;
-  }
-  .row span {
-    grid-template-columns: 1fr auto;
-    gap: 4px 14px;
-  }
-  .row span > small {
-    grid-row: 2;
-  }
-  .row em {
-    grid-row: 1 / span 2;
-    grid-column: 2;
-  }
-  .speak {
-    width: 100%;
-  }
+.row em {
+  grid-row: 1 / span 2;
+  grid-column: 2;
 }
 
 /* Small phones: everything must fit inside 320px without sideways scrolling */
+
 @media (max-width: 480px) {
-  .card {
-    padding: 20px 16px;
-    border-radius: var(--radius);
-  }
   .h2,
   .h2Tight {
     font-size: 1.55rem;
     margin-bottom: 20px;
   }
-  .cal {
-    padding: 10px 8px;
-  }
-  .calGrid {
-    gap: 3px;
-  }
-  .day {
-    min-height: 0;
-    border-radius: 8px;
-    font-size: 0.86rem;
-  }
-  .day small {
-    font-size: 0.5rem;
-  }
-  .dow {
-    font-size: 0.66rem;
-  }
+
   .row span {
     padding: 14px 14px 14px 44px;
   }
+
   .row span::before {
     left: 14px;
   }
+
   .pill {
     flex: 1 1 100%;
   }
+
   .qr {
     width: 100%;
     max-width: 240px;
     height: auto;
     aspect-ratio: 1;
   }
+
   .upi {
     padding: 16px;
   }
-  .summary {
-    padding: 18px;
-    border-radius: var(--radius);
-  }
-  .total strong {
-    font-size: 1.8rem;
-  }
+
   .doneList div {
     grid-template-columns: 1fr;
     gap: 2px;
   }
+
   .cardFoot {
     flex-direction: column-reverse;
     align-items: stretch;
     text-align: center;
   }
+
   .cardFoot :global(.btn) {
     width: 100%;
   }
+
   .footHint {
     display: none;
   }
+
   .phoneRow .cc {
     max-width: 66px;
     padding-inline: 10px;
   }
-  .mobileBar :global(.btn) {
-    padding: 12px 18px;
-  }
 }
 
-@media (max-width: 1020px) {
-  /* The bottom bar carries the main button on phones, so an otherwise empty footer is hidden */
-  .withBar .cardFoot:not(:has(:global(.linkbtn))) {
-    display: none;
-  }
+/* Narrow column: QR code above the UPI details */
+.upi {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.upi :global(.btn) {
+  width: 100%;
+}
+
+.upi .upiId {
+  justify-content: center;
 }

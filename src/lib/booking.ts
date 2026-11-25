@@ -59,7 +59,10 @@ export const findType = (cfg: BookingContent, key: string) => cfg.sessionTypes.f
 export const findOption = (t: SessionType | undefined, key: string) => t?.options.find((o) => o.key === key);
 export const findMode = (cfg: BookingContent, key: string) => cfg.modes.find((m) => m.key === key);
 
-export const isNamedSlots = (t: SessionType) => t.slots === "diningSlots";
+export const findPlan = (cfg: BookingContent, slug: string) => cfg.sessionTypes.find((t) => t.slug === slug);
+
+/** Each plan keeps its own calendar, so a booked time is identified by plan, date and start. */
+export const slotKey = (t: SessionType, date: string, start: string) => `${t.key} ${date} ${start}`;
 
 export const inr = (cfg: BookingContent, n: number) => cfg.currency + n.toLocaleString("en-IN");
 export const minText = (o: SessionOption) => `${o.minutesText || o.minutes} min`;
@@ -77,25 +80,13 @@ export function typeFee(cfg: BookingContent, t: SessionType): string {
   return (from ? "From " : "") + inr(cfg, lo);
 }
 
-/** All slots offered on a date for a session type and option (ignores bookings). */
-export function slotsFor(cfg: BookingContent, t: SessionType, o: SessionOption, key: string): Slot[] {
-  const dow = dayOfWeek(key);
-  const dur = o.minutes;
-  if (isNamedSlots(t)) {
-    return cfg.diningSlots
-      .filter((p) => p.days.includes(dow))
-      .map((p) => {
-        const end = Math.max(toMin(p.end), toMin(p.start) + dur);
-        return {
-          start: p.start,
-          end: minToHHMM(end),
-          label: `${p.label}, ${fmtTime(toMin(p.start))} to ${fmtTime(end)}`,
-        };
-      });
-  }
-  const set = cfg[t.slots] as { times: string[]; days: number[] };
-  if (!set.days.includes(dow)) return [];
-  return set.times.map((s) => ({ start: s, end: minToHHMM(toMin(s) + dur), label: fmtTime(toMin(s)) }));
+/** All slots offered on a date for a plan and option (ignores bookings). */
+export function slotsFor(t: SessionType, o: SessionOption, key: string): Slot[] {
+  if (!t.days.includes(dayOfWeek(key))) return [];
+  return t.times.map((s) => {
+    const end = toMin(s) + o.minutes;
+    return { start: s, end: minToHHMM(end), label: `${fmtTime(toMin(s))} – ${fmtTime(end)}` };
+  });
 }
 
 export type SlotState = Slot & { taken: boolean };
@@ -109,9 +100,9 @@ export function slotsWithState(
   now = Date.now(),
 ): SlotState[] {
   const soon = now + cfg.minNoticeHours * 3600_000;
-  return slotsFor(cfg, t, o, key).map((s) => ({
+  return slotsFor(t, o, key).map((s) => ({
     ...s,
-    taken: booked.includes(`${key} ${s.start}`) || slotEpoch(key, s.start) < soon,
+    taken: booked.includes(slotKey(t, key, s.start)) || slotEpoch(key, s.start) < soon,
   }));
 }
 
@@ -121,9 +112,9 @@ export function bookingWindow(cfg: BookingContent, now = Date.now()): string[] {
 }
 
 /** Human-readable "when", e.g. "Tuesday 21 October, 6:45 PM to 7:30 PM". */
-export function whenText(t: SessionType, key: string, slot: Slot): string {
+export function whenText(key: string, slot: Slot): string {
   const day = formatDate(key, { weekday: "long", day: "numeric", month: "long" });
-  return `${day}, ${isNamedSlots(t) ? slot.label : `${fmtTime(toMin(slot.start))} to ${fmtTime(toMin(slot.end))}`}`;
+  return `${day}, ${fmtTime(toMin(slot.start))} to ${fmtTime(toMin(slot.end))}`;
 }
 
 export function sessionText(cfg: BookingContent, t: SessionType, o: SessionOption, members: number): string {
@@ -181,7 +172,7 @@ export function validateBooking(
   if (!cfg.concerns.includes(b.topic)) return { ok: false, error: "invalid_topic" };
   if (!/^\d{4}-\d{2}-\d{2}$/.test(b.date) || !bookingWindow(cfg, now).includes(b.date))
     return { ok: false, error: "invalid_date" };
-  const slot = slotsFor(cfg, type, option, b.date).find((s) => s.start === b.time);
+  const slot = slotsFor(type, option, b.date).find((s) => s.start === b.time);
   if (!slot) return { ok: false, error: "invalid_time" };
   if (slotEpoch(b.date, slot.start) < now + cfg.minNoticeHours * 3600_000) return { ok: false, error: "too_soon" };
   return {
@@ -192,7 +183,7 @@ export function validateBooking(
       members,
       slot,
       fee: feeOf(option, members),
-      when: whenText(type, b.date, slot),
+      when: whenText(b.date, slot),
       session: sessionText(cfg, type, option, members),
       modeSummary: findMode(cfg, b.mode)?.summary || b.mode,
     },

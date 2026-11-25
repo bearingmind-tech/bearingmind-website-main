@@ -46,7 +46,7 @@ export type Area = { title: string; items: string[] };
 export type Step = { title: string; text: string };
 export type Faq = { question: string; answer: string };
 export type ResearchNote = { text: string; source: string };
-export type Registration = { label: string; value: string };
+export type Registration = { label: string; value: string; badge?: string };
 export type LabelledParagraph = { label: string; text: string };
 
 export type HomeContent = {
@@ -122,32 +122,34 @@ export type SessionOption = {
   modes: string[];
 };
 
+export type PlanTheme = "gold" | "blue" | "purple" | "pink";
+
 export type SessionType = {
   key: string;
+  /** Booking page address: /book/{slug} */
+  slug: string;
   label: string;
   short: string;
   forWho: string;
   modeText: string;
   slotsText: string;
   note: string;
-  featured?: boolean;
-  slots: "diningSlots" | "standardSlots" | "weekendSlots";
+  theme: PlanTheme;
+  /** Private-dining style booking page */
+  premium?: boolean;
+  /** Start times (24-hour) and weekdays (0 = Sunday) this plan is offered */
+  times: string[];
+  days: number[];
   guardian?: boolean;
   options: SessionOption[];
 };
 
 export type Mode = { key: string; label: string; sub: string; summary: string };
-export type NamedSlot = { key: string; label: string; start: string; end: string; days: number[] };
-export type TimeSlots = { times: string[]; days: number[] };
 
 export type BookingContent = {
-  defaultType: string;
   currency: string;
   sessionTypes: SessionType[];
   modes: Mode[];
-  diningSlots: NamedSlot[];
-  standardSlots: TimeSlots;
-  weekendSlots: TimeSlots;
   bookingWindowDays: number;
   minNoticeHours: number;
   holdMinutes: number;
@@ -197,6 +199,14 @@ export type BookingContent = {
     backHome: string;
     noSlots: string;
   };
+  /** Wording for the private-dining (premium) booking page; anything left out falls back to copy */
+  premiumCopy: PremiumCopy;
+};
+
+export type BookingCopy = BookingContent["copy"];
+export type PremiumCopy = Partial<BookingCopy> & {
+  eveningLabel: string;
+  ndaLabel: string;
 };
 
 export type Author = {

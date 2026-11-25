@@ -1,6 +1,6 @@
 import { CalendarIcon } from "@sanity/icons/Calendar";
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { str, strList, textBlock, time, txt, weekdays } from "./helpers";
+import { str, strList, textBlock, txt, weekdays } from "./helpers";
 
 const sessionOption = defineArrayMember({
   name: "sessionOption",
@@ -28,7 +28,6 @@ const sessionOption = defineArrayMember({
       options: {
         list: [
           { title: "Google Meet", value: "meet" },
-          { title: "Phone", value: "phone" },
           { title: "Dinner", value: "dining" },
           { title: "In person", value: "inperson" },
         ],
@@ -69,21 +68,25 @@ export const bookingSettings = defineType({
             txt("modeText", "Mode", 2),
             str("slotsText", "Slots"),
             txt("note", "Note", 3),
-            defineField({ name: "featured", title: "Highlight this card", type: "boolean" }),
+            defineField({ ...str("slug", "Booking page address", "Shown as /book/… e.g. homemakers. Do not change once shared."), validation: (r) => r.required() }),
             defineField({
-              name: "slots",
-              title: "Uses which timings",
+              name: "theme",
+              title: "Colour",
               type: "string",
               options: {
                 list: [
-                  { title: "Dinner", value: "diningSlots" },
-                  { title: "Evening slots", value: "standardSlots" },
-                  { title: "Weekend slots", value: "weekendSlots" },
+                  { title: "Light gold", value: "gold" },
+                  { title: "Light blue", value: "blue" },
+                  { title: "Royal purple", value: "purple" },
+                  { title: "Pink", value: "pink" },
                 ],
                 layout: "radio",
               },
               validation: (r) => r.required(),
             }),
+            defineField({ name: "premium", title: "Private-dining style booking page", type: "boolean" }),
+            strList("times", "Start times (24-hour, e.g. 16:00)"),
+            weekdays(),
             defineField({ name: "guardian", title: "A parent or guardian must book", type: "boolean" }),
             defineField({ name: "options", title: "Options", type: "array", of: [sessionOption] }),
           ],
@@ -99,7 +102,6 @@ export const bookingSettings = defineType({
       initialValue: false,
       group: "sessions",
     }),
-    defineField({ ...str("defaultType", "Pre-selected session type (code)"), group: "sessions" }),
     defineField({ ...str("currency", "Currency symbol"), group: "sessions" }),
     defineField({
       name: "modes",
@@ -118,33 +120,6 @@ export const bookingSettings = defineType({
           preview: { select: { title: "label", subtitle: "sub" } },
         }),
       ],
-    }),
-    defineField({
-      name: "diningSlots",
-      title: "Dinner slot (Conversational Dining)",
-      type: "array",
-      group: "times",
-      of: [
-        defineArrayMember({
-          type: "object",
-          fields: [str("key", "Code"), str("label", "Name"), time("start", "Starts"), time("end", "Ends"), weekdays()],
-          preview: { select: { title: "label", start: "start", end: "end" }, prepare: ({ title, start, end }) => ({ title, subtitle: `${start} to ${end}` }) },
-        }),
-      ],
-    }),
-    defineField({
-      name: "standardSlots",
-      title: "Slots (Working professionals)",
-      type: "object",
-      group: "times",
-      fields: [strList("times", "Start times (24-hour, e.g. 18:45)"), weekdays()],
-    }),
-    defineField({
-      name: "weekendSlots",
-      title: "Slots (Children and family)",
-      type: "object",
-      group: "times",
-      fields: [strList("times", "Start times (24-hour, e.g. 10:00)"), weekdays()],
     }),
     defineField({ name: "bookingWindowDays", title: "How many days ahead people can book", type: "number", group: "times" }),
     defineField({ name: "minNoticeHours", title: "Minimum notice (hours)", type: "number", group: "times" }),

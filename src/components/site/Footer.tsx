@@ -65,7 +65,7 @@ export function Footer({ site, booking }: { site: SiteSettings; booking: Booking
           <p className={styles.head}>Sessions</p>
           <ul>
             {booking.sessionTypes.map((t) => (
-              <li key={t.key}><Link href={`/book?type=${t.key}`}>{t.label}</Link></li>
+              <li key={t.key}><Link href={`/book/${t.slug}`}>{t.label}</Link></li>
             ))}
           </ul>
           <p className={styles.head}>Read</p>

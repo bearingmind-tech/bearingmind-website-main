@@ -26,7 +26,6 @@
 
 .regs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   margin: 20px 0 0;
   background: var(--white);
   border: 1px solid var(--line);
@@ -38,7 +37,25 @@
 }
 
 .regs div + div {
-  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+}
+
+.regs .withBadge {
+  position: relative;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 94px;
+}
+
+.badge {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 60px;
+  height: auto;
+  transform: translateY(-50%);
 }
 
 .regs dt {
@@ -142,18 +159,9 @@
 }
 
 @media (max-width: 560px) {
-  .regs {
-    grid-template-columns: 1fr;
-  }
   .regs div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 14px 18px;
-  }
-  .regs div + div {
-    border-left: 0;
-    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
   .regs dd {
     font-variant-numeric: tabular-nums;

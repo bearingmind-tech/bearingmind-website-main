@@ -1,10 +1,10 @@
-import { BookingFlow } from "@/components/booking/BookingFlow";
+import { redirect } from "next/navigation";
+import { PlanChooser } from "@/components/booking/PlanChooser";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { findType } from "@/lib/booking";
 import { getBooking, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 import { breadcrumbSchema } from "@/lib/seo";
-
-export const revalidate = 3600;
 
 export async function generateMetadata() {
   const [site, booking] = await Promise.all([getSite(), getBooking()]);
@@ -15,12 +15,15 @@ export async function generateMetadata() {
   );
 }
 
-export default async function BookPage() {
-  const [site, booking] = await Promise.all([getSite(), getBooking()]);
+export default async function BookPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
+  const [{ type }, site, booking] = await Promise.all([searchParams, getSite(), getBooking()]);
+  /* Old links used /book?type=… */
+  const legacy = type ? findType(booking, type) : undefined;
+  if (legacy) redirect(`/book/${legacy.slug}`);
   return (
     <>
       <JsonLd data={breadcrumbSchema(site, [{ name: "Home", path: "/" }, { name: booking.copy.heading, path: "/book" }])} />
-      <BookingFlow cfg={booking} site={site} />
+      <PlanChooser cfg={booking} site={site} />
     </>
   );
 }

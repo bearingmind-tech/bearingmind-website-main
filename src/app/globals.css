@@ -60,6 +60,32 @@
   --container-narrow: 720px;
 }
 
+/* Plan colours: --plan accent, --plan-deep for text and buttons (AA on white and soft), --plan-soft tint */
+.plan-gold {
+  --plan: #c9a45c;
+  --plan-deep: #7a5a1e;
+  --plan-soft: #f8f0df;
+  --plan-line: #ead9b4;
+}
+.plan-blue {
+  --plan: #6f9fd4;
+  --plan-deep: #2b5785;
+  --plan-soft: #eaf2fb;
+  --plan-line: #cbdcf0;
+}
+.plan-purple {
+  --plan: #9b7ccb;
+  --plan-deep: #57398c;
+  --plan-soft: #f2edf9;
+  --plan-line: #ddd1ef;
+}
+.plan-pink {
+  --plan: #e38fb2;
+  --plan-deep: #a23f6b;
+  --plan-soft: #fdeef4;
+  --plan-line: #f3cfdf;
+}
+
 *,
 *::before,
 *::after {

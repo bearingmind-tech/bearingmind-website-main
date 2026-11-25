@@ -35,7 +35,7 @@ export async function GET() {
     booking.showFeesPublicly ? "## Sessions and fees" : "## Sessions",
     ...booking.sessionTypes.flatMap((t) => [
       `### ${t.label}`,
-      `For: ${t.forWho}. Mode: ${t.modeText} Slots: ${t.slotsText}. ${t.note}`,
+      `For: ${t.forWho}. Mode: ${t.modeText}. Slots: ${t.slotsText}. ${t.note} Book: ${u(`/book/${t.slug}`)}`,
       ...t.options.map((o) => `- ${o.label}: ${minText(o)}${booking.showFeesPublicly ? `, ${feeText(booking, o)}` : ""}`),
     ]),
     "",

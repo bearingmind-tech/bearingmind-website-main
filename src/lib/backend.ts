@@ -39,7 +39,7 @@ const demoHolds = new Map<string, { slot: string; status: string }>();
 
 function demo(action: string, p: Record<string, unknown>): BackendResult {
   console.log(`[demo backend] ${action}`, { ...p, notes: p.notes ? "(hidden)" : undefined });
-  const slot = `${p.date} ${p.time}`;
+  const slot = `${p.type} ${p.date} ${p.time}`;
   switch (action) {
     case "slots":
       return { ok: true, booked: [...demoHolds.values()].map((h) => h.slot), demo: true };

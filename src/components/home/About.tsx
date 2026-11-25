@@ -39,8 +39,11 @@ export function About({ c, withHead = true, more = false }: Props) {
           </figure>
           <dl className={styles.regs} aria-label="Registrations">
             {c.registrations.map((r) => (
-              <div key={r.label}>
-                <dt>{r.label}</dt>
+              <div key={r.label} className={r.badge ? styles.withBadge : undefined}>
+                <dt>
+                  {r.badge && <Image src={r.badge} width={120} height={120} alt="" className={styles.badge} />}
+                  {r.label}
+                </dt>
                 <dd>{r.value}</dd>
               </div>
             ))}
