@@ -5,11 +5,11 @@ export const client = isSanityConfigured
   ? createClient({ projectId, dataset, apiVersion, useCdn: true, perspective: "published" })
   : null;
 
-/** Every CMS read is tagged "sanity", so one webhook call refreshes the whole site. */
+/** Every CMS read is tagged "sanity", so one webhook call refreshes the whole site; without the webhook, edits appear within a minute. */
 export async function sanityFetch<T>(query: string, params: Record<string, unknown> = {}): Promise<T | null> {
   if (!client) return null;
   try {
-    return await client.fetch<T>(query, params, { next: { revalidate: 3600, tags: ["sanity"] } });
+    return await client.fetch<T>(query, params, { next: { revalidate: 60, tags: ["sanity"] } });
   } catch (err) {
     console.error("Sanity fetch failed, using default content:", err);
     return null;

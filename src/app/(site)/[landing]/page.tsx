@@ -7,7 +7,7 @@ import { getBooking, getLanding, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/seo";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 /* Only the plan landing pages live at the top level; anything else is a 404 */
 export const dynamicParams = false;
 

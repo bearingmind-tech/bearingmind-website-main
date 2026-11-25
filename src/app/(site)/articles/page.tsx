@@ -4,7 +4,7 @@ import { getPosts, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 import { breadcrumbSchema } from "@/lib/seo";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateMetadata() {
   const [site, posts] = await Promise.all([getSite(), getPosts("article")]);

@@ -15,7 +15,7 @@ import { getBooking, getHome, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 import { faqSchema, founderSchema, organizationSchema, websiteSchema } from "@/lib/seo";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateMetadata() {
   const site = await getSite();

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { defaultLandings } from "@/content/landings";
 import { getBooking, getPosts, getSite } from "@/lib/content";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [site, posts, booking] = await Promise.all([getSite(), getPosts(), getBooking()]);

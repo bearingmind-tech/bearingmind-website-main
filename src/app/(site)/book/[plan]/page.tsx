@@ -6,7 +6,7 @@ import { getBooking, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 type Props = { params: Promise<{ plan: string }> };
 

@@ -2,7 +2,7 @@ import { getBooking, getHome, getPosts, getSite } from "@/lib/content";
 import { feeText, minText } from "@/lib/booking";
 import { defaultLandings } from "@/content/landings";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 /* A plain-text summary of the practice for AI assistants (llmstxt.org). Built from the same CMS content as the site. */
 export async function GET() {

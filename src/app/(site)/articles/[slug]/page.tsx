@@ -4,7 +4,7 @@ import { PostView } from "@/components/blog/PostView";
 import { getPost, getPosts, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
