@@ -305,6 +305,9 @@ export const bookingDefaults: BookingContent = {
   sessionTypes: [
     {
       key: "dining",
+      seoTitle: "Counselling for Public Figures & HNIs in Bangalore",
+      seoDescription:
+        "Discreet one-to-one counselling and executive coaching for celebrities, HNIs and public figures, over a private dinner at a luxury hotel in Bangalore.",
       slug: "public-figures",
       label: "Public Figures",
       short: "A private consultation over dinner at a luxury hotel",
@@ -323,6 +326,9 @@ export const bookingDefaults: BookingContent = {
     },
     {
       key: "professional",
+      seoTitle: "Online Counselling for Working Professionals",
+      seoDescription:
+        "CBT-based online counselling on Google Meet for employed professionals: stress, burnout, work-life balance and career direction. Weekday slots, 4 to 6 PM.",
       slug: "employed-professionals",
       label: "Employed Professionals",
       short: "Online on Google Meet, weekday afternoons",
@@ -337,6 +343,9 @@ export const bookingDefaults: BookingContent = {
     },
     {
       key: "homemaker",
+      seoTitle: "Counselling for Homemakers in Bangalore & Online",
+      seoDescription:
+        "Confidential CBT counselling for homemakers: stress, anxiety, relationships and time for yourself. Online on Google Meet or in person in Bangalore, Saturdays.",
       slug: "homemakers",
       label: "Homemakers",
       short: "Online or in person, Saturday afternoons",
@@ -351,6 +360,9 @@ export const bookingDefaults: BookingContent = {
     },
     {
       key: "children",
+      seoTitle: "Child Counselling with Parents in Bangalore",
+      seoDescription:
+        "Counselling for children, with a parent or guardian, by a consultant specialised in children's counselling. Online or in person in Bangalore, Sunday mornings.",
       slug: "children",
       label: "Children with Parents",
       short: "Online or in person, Sunday mornings",

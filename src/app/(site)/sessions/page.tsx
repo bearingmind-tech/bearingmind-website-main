@@ -13,7 +13,7 @@ export async function generateMetadata() {
   const [home, booking] = await Promise.all([getHome(), getBooking()]);
   return pageMeta(
     booking.showFeesPublicly ? "Counselling sessions and fees, Bangalore and online" : "Counselling sessions in Bangalore and online",
-    `${booking.sessionTypes.map((t) => `${t.label} (${t.short})`).join(", ")}. ${booking.showFeesPublicly ? home.sessions.feeNote : "Book online in three short steps."}`,
+    `Counselling plans in Bangalore and online: ${booking.sessionTypes.map((t) => t.label).join(", ")}. ${booking.showFeesPublicly ? home.sessions.feeNote : "Confidential CBT, booked online."}`,
     "/sessions",
   );
 }

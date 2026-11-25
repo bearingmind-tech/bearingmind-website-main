@@ -7,8 +7,9 @@ import { breadcrumbSchema } from "@/lib/seo";
 export const revalidate = 3600;
 
 export async function generateMetadata() {
-  const site = await getSite();
-  return pageMeta("Articles on CBT, stress and workplace mental health", `Articles from ${site.legalName}: CBT, stress, resilience, relationships and workplace mental health, Bangalore.`, "/articles");
+  const [site, posts] = await Promise.all([getSite(), getPosts("article")]);
+  /* An empty listing is thin content; it joins Google once the first article is published */
+  return pageMeta("Articles on CBT, stress and workplace mental health", `Articles from ${site.legalName}: CBT, stress, resilience, relationships and workplace mental health, Bangalore.`, "/articles", { noindex: !posts.length });
 }
 
 export default async function Page() {

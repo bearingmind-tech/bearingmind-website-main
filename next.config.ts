@@ -43,6 +43,8 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   experimental: {
     sri: { algorithm: "sha256" },
+    /* CSS is small; inlining it removes render-blocking requests (faster first paint on phones) */
+    inlineCss: true,
   },
   images: {
     formats: ["image/avif", "image/webp"],

@@ -89,6 +89,8 @@ export const bookingSettings = defineType({
             weekdays(),
             defineField({ name: "guardian", title: "A parent or guardian must book", type: "boolean" }),
             defineField({ name: "options", title: "Options", type: "array", of: [sessionOption] }),
+            str("seoTitle", "Google title (optional)", "Shown in search results for this plan's booking page. Under 50 characters."),
+            txt("seoDescription", "Google description (optional)", 2),
           ],
           preview: { select: { title: "label", subtitle: "short" } },
         }),

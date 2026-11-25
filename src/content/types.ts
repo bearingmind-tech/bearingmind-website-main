@@ -142,6 +142,9 @@ export type SessionType = {
   days: number[];
   guardian?: boolean;
   options: SessionOption[];
+  /** Search results only: the booking page's title and description in Google */
+  seoTitle?: string;
+  seoDescription?: string;
 };
 
 export type Mode = { key: string; label: string; sub: string; summary: string };

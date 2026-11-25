@@ -57,7 +57,7 @@ export function ResearchNotes({ c }: { c: HomeContent["research"] }) {
               ‹
             </button>
             <button type="button" aria-label={paused ? "Play notes" : "Pause notes"} onClick={() => setPaused(!paused)}>
-              {paused ? "▷" : "II"}
+              <span aria-hidden="true">{paused ? "▷" : "II"}</span>
             </button>
             <button type="button" aria-label="Next note" onClick={() => go(i + 1)}>
               ›

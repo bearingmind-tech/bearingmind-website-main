@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { findPlan } from "@/lib/booking";
 import { getBooking, getSite } from "@/lib/content";
 import { pageMeta } from "@/lib/pageMeta";
-import { breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -19,11 +19,7 @@ export async function generateMetadata({ params }: Props) {
   const [{ plan }, booking] = await Promise.all([params, getBooking()]);
   const t = findPlan(booking, plan);
   if (!t) return {};
-  return pageMeta(
-    t.premium ? `${t.label}: private dinner consultation, Bangalore` : `Book ${t.label} counselling, Bangalore and online`,
-    `${t.short}. ${t.slotsText}. For ${t.forWho.toLowerCase()}. Book online in three short steps.`,
-    `/book/${t.slug}`,
-  );
+  return pageMeta(t.seoTitle || `${t.label} counselling in Bangalore`, t.seoDescription || `${t.short}. ${t.slotsText}. For ${t.forWho}.`, `/book/${t.slug}`);
 }
 
 export default async function PlanBookingPage({ params }: Props) {
@@ -33,11 +29,21 @@ export default async function PlanBookingPage({ params }: Props) {
   return (
     <>
       <JsonLd
-        data={breadcrumbSchema(site, [
-          { name: "Home", path: "/" },
-          { name: booking.copy.heading, path: "/book" },
-          { name: t.label, path: `/book/${t.slug}` },
-        ])}
+        data={[
+          serviceSchema(site, {
+            name: t.seoTitle || t.label,
+            description: t.seoDescription || `${t.short}. ${t.slotsText}.`,
+            path: `/book/${t.slug}`,
+            serviceType: t.premium ? "Executive counselling and coaching" : "CBT-based counselling",
+            audience: t.forWho,
+            offers: t.options.map((o) => `${t.label}: ${o.label}`),
+          }),
+          breadcrumbSchema(site, [
+            { name: "Home", path: "/" },
+            { name: booking.copy.heading, path: "/book" },
+            { name: t.label, path: `/book/${t.slug}` },
+          ]),
+        ]}
       />
       <BookingFlow cfg={booking} site={site} type={t} />
     </>

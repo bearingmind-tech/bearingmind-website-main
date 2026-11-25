@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import QRCode from "qrcode";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { BookingContent, BookingCopy, PlanTheme, SessionType, SiteSettings } from "@/content/types";
 import {
@@ -216,12 +215,16 @@ export function BookingFlow({ cfg, site, type }: { cfg: BookingContent; site: Si
     setPaid(null);
     setPayNote("");
     if (r.payment.method === "upi") {
-      QRCode.toDataURL(upiLink(r.payment.upiId, r.payment.payee, r.fee, r.ref), {
-        width: 400,
-        margin: 1,
-        color: { dark: "#16251F", light: "#ffffff" },
-        errorCorrectionLevel: "M",
-      })
+      /* Loaded only at the payment step, so the booking page itself stays light */
+      import("qrcode")
+        .then(({ default: QRCode }) =>
+          QRCode.toDataURL(upiLink(r.payment.upiId, r.payment.payee, r.fee, r.ref), {
+            width: 400,
+            margin: 1,
+            color: { dark: "#16251F", light: "#ffffff" },
+            errorCorrectionLevel: "M",
+          }),
+        )
         .then(setQr)
         .catch(() => setQr(""));
     } else {
