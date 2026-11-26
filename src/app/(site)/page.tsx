@@ -1,3 +1,4 @@
+import { BookCta } from "@/components/ui/BookCta";
 import { About } from "@/components/home/About";
 import { AiBand } from "@/components/home/AiBand";
 import { Approach } from "@/components/home/Approach";
@@ -41,6 +42,7 @@ export default async function HomePage() {
       <Privacy c={home.privacy} site={site} />
       <Faq c={home.faq} more />
       <ResearchNotes c={home.research} />
+      <BookCta site={site} />
     </>
   );
 }

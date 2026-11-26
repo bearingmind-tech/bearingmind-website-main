@@ -1,3 +1,4 @@
+import { BookCta } from "@/components/ui/BookCta";
 import { About } from "@/components/home/About";
 import { Proof } from "@/components/home/Proof";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -21,6 +22,7 @@ export default async function AboutPage() {
       <PageHeader title={home.about.heading} crumbs={[{ name: "Home", href: "/" }, { name: home.about.heading }]} />
       <About c={home.about} withHead={false} />
       <Proof c={home.proof} />
+      <BookCta site={site} />
     </>
   );
 }

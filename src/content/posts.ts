@@ -318,7 +318,7 @@ managers.body = pt(managers.slug, [
   "## Does training actually work?",
   "Evidence for structured, skills-based approaches is strong. A meta-analysis of workplace stress management programmes found that **cognitive-behavioural interventions had larger effects than other types of programme** (Richardson & Rothstein, 2008). That is why our workshops are built on CBT tools that people can use the next morning, rather than on awareness talks alone.",
   "## How BearingMind works with organisations",
-  "We understand work from both sides of the table: the employee's state of mind, the quiet slide into burnout, and management's expectations of performance. Our programmes are built on years in industry leadership roles, an engineering degree, an MBA, a Master's in Counselling Psychology and a doctorate in Human Resources.",
+  "We understand work from both sides of the table: the employee's state of mind, the quiet slide into burnout, and management's expectations of performance. Our programmes are built on years in industry leadership roles, an engineering degree, an MBA, a Master's in Counselling Psychology, a doctorate in Human Resources, and membership of the American Psychological Association.",
   "- Leadership and executive mentoring",
   "- Manager training: mental health at work",
   "- Workshops on stress, burnout and resilience",
@@ -335,7 +335,7 @@ const publicFigures: Post = {
   title: "Mental health in the public eye: pressure, privacy and getting help discreetly",
   seoTitle: "Mental Health for Public Figures and HNIs",
   seoDescription:
-    "Why public figures, celebrities and senior leaders delay getting help, the pressures that come with visibility, and how to find discreet, confidential counselling.",
+    "Why public figures and senior leaders delay getting help, the pressures of visibility, and how to find discreet, confidential counselling.",
   excerpt:
     "Visibility brings its own pressures: constant scrutiny, few people you can speak freely with, and a real fear of being seen asking for help. Here is what helps, and how to get support without the risk.",
   publishedAt: "2026-11-25T09:00:00+05:30",
@@ -400,7 +400,7 @@ publicFigures.body = pt(publicFigures.slug, [
   "4. **How is my data handled?** In India, personal data is protected under the Digital Personal Data Protection Act, 2023. Ask how notes are stored and who can see them.",
   "5. **What are your qualifications?** Look for formal training in counselling psychology and a clear, structured approach such as CBT.",
   "## How BearingMind works with public figures",
-  "Sessions take place over a **private dinner at a luxury hotel in Bangalore**, from 7:30 to 9:00 PM, Monday to Friday, in a setting that looks like any other business evening. You may book for yourself or as a couple, under any name you prefer, and a confidentiality agreement is available before you meet. The hotel is shared privately once your reservation is confirmed.",
+  "Sessions take place over a **private dinner at a luxury hotel in Bangalore**, from 7:30 PM, Monday to Friday (90 minutes, or 120 minutes for a couple), in a setting that looks like any other business evening. You may book for yourself or as a couple, under any name you prefer, and a confidentiality agreement is available before you meet. The hotel is shared privately once your reservation is confirmed.",
   "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. Read more about [counselling for public figures](/counselling-for-public-figures), or [reserve an evening](/book/public-figures).",
   "Our counselling and coaching is not a substitute for clinical therapy or psychiatric treatment.",
   `> ${CRISIS}`,
@@ -415,7 +415,7 @@ const onlineProfessionals: Post = {
   title: "Online counselling for working professionals: does it work, and how to choose",
   seoTitle: "Online Counselling for Professionals in India",
   seoDescription:
-    "Does online counselling work as well as in-person sessions? What the research says, signs you could benefit, how to choose a counsellor in India, and how to prepare.",
+    "Does online counselling work as well as in person? What research says, signs you could benefit, and how to choose a counsellor in India.",
   excerpt:
     "Online counselling lets busy professionals get support without losing half a day to travel. Research shows online CBT works about as well as face-to-face CBT. Here is how to choose a counsellor and get the most from your sessions.",
   publishedAt: "2026-11-25T09:10:00+05:30",

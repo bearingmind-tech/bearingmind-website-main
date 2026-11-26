@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BookCta } from "@/components/ui/BookCta";
 import { Faq } from "@/components/home/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -20,9 +20,7 @@ export default async function FaqPage() {
       <JsonLd data={[faqSchema(home.faq.items), breadcrumbSchema(site, [{ name: "Home", path: "/" }, { name: home.faq.heading, path: "/faq" }])]} />
       <PageHeader title={home.faq.heading} sub={home.faq.subheading} crumbs={[{ name: "Home", href: "/" }, { name: home.faq.heading }]} />
       <Faq c={home.faq} withHead={false} />
-      <div className="wrap" style={{ padding: "48px var(--gutter) 80px", textAlign: "center" }}>
-        <Link className="btn" href="/book">{site.bookLabel}</Link>
-      </div>
+      <BookCta site={site} />
     </>
   );
 }

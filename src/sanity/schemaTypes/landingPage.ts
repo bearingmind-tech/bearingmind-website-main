@@ -39,6 +39,13 @@ export const landingPage = defineType({
       of: [textBlock("section", "Section", [str("heading", "Heading"), paragraphs("body", "Paragraphs"), strList("points", "Bullet points (optional)")])],
     }),
     defineField({
+      name: "readMore",
+      title: "Further reading (optional)",
+      description: "A link shown after the sections, e.g. this plan's blog guide.",
+      type: "object",
+      fields: [str("label", "Link text"), str("href", "Link address", "e.g. /blog/does-my-child-need-counselling")],
+    }),
+    defineField({
       name: "faq",
       title: "Questions",
       type: "array",

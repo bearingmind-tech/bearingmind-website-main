@@ -76,13 +76,13 @@ export const siteDefaults: SiteSettings = {
 
 export const homeDefaults: HomeContent = {
   hero: {
-    heading: "A calmer mind makes better decisions.",
+    heading: "A calmer mind makes better decisions",
     lede:
       "Structured, CBT-based counselling and coaching for leaders, professionals and their families, in Bangalore and online. For people who are doing well on paper, and want to feel as well as they look.",
     primaryCta: "Book a session",
     secondaryCta: "How it works",
     compassBreathe: "Breathe.",
-    compassCaption: "Find your bearing – your direction.",
+    compassCaption: "Find your bearing – your direction",
   },
   aiBand: {
     line1: "No AI in sessions.",
@@ -164,7 +164,7 @@ export const homeDefaults: HomeContent = {
     lede:
       "We understand work from both sides of the table: the employee's state of mind, the quiet slide into burnout, and management's expectations of performance.",
     credentials:
-      "Built on years in industry leadership roles, with an engineering degree, an MBA, a Master's in Counselling Psychology and a doctorate in Human Resources.",
+      "Built on years in industry leadership roles, with an engineering degree, an MBA, a Master's in Counselling Psychology, a doctorate in Human Resources, and membership of the American Psychological Association.",
     body:
       "Leadership mentoring and mental health training for companies, in line with WHO and ILO guidance that managers be trained to prevent workplace stress and support colleagues in distress.",
     offerings: [
@@ -263,7 +263,7 @@ export const homeDefaults: HomeContent = {
       {
         question: "Can my spouse or family join?",
         answer:
-          "Yes. Public Figures sessions can be booked for a couple: a private dinner for two, 7:30 to 9:00 PM. Children with Parents sessions, 60 minutes on Sunday mornings, include a parent or guardian.",
+          "Yes. Public Figures sessions can be booked for a couple: a private dinner for two, 120 minutes from 7:30 PM. Children with Parents sessions, 60 minutes on Sunday mornings, include a parent or guardian.",
       },
       { question: "What if I need to cancel?", answer: "Your session is rescheduled to a later date of your choice." },
     ],
@@ -313,7 +313,7 @@ export const bookingDefaults: BookingContent = {
       short: "A private consultation over dinner at a luxury hotel",
       forWho: "HNIs, celebrities and public figures",
       modeText: "In person, over dinner at a luxury hotel in Bangalore. Dinner included.",
-      slotsText: "7:30–9:00 PM, Monday to Friday",
+      slotsText: "From 7:30 PM, Monday to Friday",
       note: "Hotel venue shared upon confirmation. A confidentiality agreement is available on request.",
       theme: "gold",
       premium: true,
@@ -321,7 +321,7 @@ export const bookingDefaults: BookingContent = {
       days: [1, 2, 3, 4, 5],
       options: [
         { key: "individual", label: "Individual", minutes: 90, fee: 10000, modes: ["dining"] },
-        { key: "couple", label: "Couple", minutes: 90, fee: 12000, modes: ["dining"] },
+        { key: "couple", label: "Couple", minutes: 120, fee: 12000, modes: ["dining"] },
       ],
     },
     {

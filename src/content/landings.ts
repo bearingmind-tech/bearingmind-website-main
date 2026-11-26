@@ -33,7 +33,7 @@ export const defaultLandings: LandingPage[] = [
       {
         heading: "How a private evening works",
         body: [
-          "Each session runs from 7:30 to 9:00 PM, Monday to Friday, with dinner included. You choose an evening online and complete a short, confidential intake form so the conversation can start where it matters. The hotel is shared privately once your reservation is confirmed.",
+          "Evenings begin at 7:30 PM, Monday to Friday, with dinner included: 90 minutes for one person, or 120 minutes for a couple. You choose an evening online and complete a short, confidential intake form so the conversation can start where it matters. The hotel is shared privately once your reservation is confirmed.",
           "Progress is goal-led: in the first session we agree two or three clear goals and how to measure them, and we review progress together by the fourth.",
         ],
       },
@@ -57,7 +57,7 @@ export const defaultLandings: LandingPage[] = [
       },
       {
         question: "Can my spouse join?",
-        answer: "Yes. You can reserve the evening for one person or as a couple.",
+        answer: "Yes. You can reserve the evening for one person (90 minutes) or as a couple (120 minutes).",
       },
       {
         question: "Can I sign a confidentiality agreement?",
@@ -113,6 +113,12 @@ export const defaultLandings: LandingPage[] = [
         heading: "From anywhere in India",
         body: [
           "Because sessions are online, professionals join from across Bangalore, from Whitefield and Electronic City to Koramangala and Indiranagar, and from other cities including Mumbai, Delhi NCR, Hyderabad, Chennai and Pune. Sessions are in English, Kannada or Hindi, with working Tamil.",
+        ],
+      },
+      {
+        heading: "Your counsellor",
+        body: [
+          "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a PhD in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
         ],
       },
     ],
@@ -172,6 +178,12 @@ export const defaultLandings: LandingPage[] = [
         heading: "Private and judgement-free",
         body: [
           "What you share stays between us. We do not confirm to anyone, including family, that you are a client without your written permission. You may book under any name you prefer.",
+        ],
+      },
+      {
+        heading: "Your counsellor",
+        body: [
+          "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a PhD in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
         ],
       },
     ],
