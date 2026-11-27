@@ -11,7 +11,7 @@ import type { SiteSettings } from "./types";
 export type LegalSection = { heading: string; body?: string[]; points?: string[]; after?: string[] };
 export type LegalDoc = { slug: string; title: string; sub: string; seoTitle: string; seoDescription: string; updated: string; sections: LegalSection[] };
 
-export const LEGAL_UPDATED = "2026-11-26";
+export const LEGAL_UPDATED = "2026-11-27";
 
 const contactLines = (s: SiteSettings) => [
   `**${s.founder.name}**, Grievance Officer, ${s.legalName}`,
@@ -87,7 +87,7 @@ export function legalDocs(s: SiteSettings): LegalDoc[] {
           points: [
             "**Google** (Google Workspace): email, booking records, calendar invitations and Google Meet video sessions.",
             "**Razorpay:** online payments, under the Reserve Bank of India's rules for payment aggregators.",
-            "**Vercel:** hosting of this website.",
+            "**Netlify:** hosting of this website.",
             "**Our associate consultant** for Children with Parents sessions, who receives only what is needed to provide them.",
           ],
         },
