@@ -42,9 +42,9 @@
 
 .text {
   margin: 0;
-  font-family: var(--display);
-  font-style: italic;
-  line-height: 1.08;
+  font-family: var(--serif);
+  font-style: normal;
+  line-height: 1.2;
   color: var(--gold);
   background: linear-gradient(120deg, #c9a55a 0%, #f1dcae 48%, #e2c48f 60%, #b8924c 100%);
   -webkit-background-clip: text;
@@ -54,16 +54,16 @@
 
 .l1 {
   display: block;
-  font-size: clamp(2.3rem, 6vw, 4rem);
-  font-weight: 600;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
 
 .l2 {
   display: block;
   margin-top: clamp(10px, 1.6vw, 16px);
-  font-size: clamp(1.25rem, 2.8vw, 1.9rem);
-  font-weight: 500;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 400;
   letter-spacing: 0.005em;
 }
 

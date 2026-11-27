@@ -17,7 +17,7 @@ Do this signed in as **contact@bearingmind.com**. Everything stays in the practi
 4. **Deploy.**
    1. Click **Deploy → New deployment**, set the type to **Web app**, **Execute as: Me**, and **Who has access: Anyone**.
    2. Click **Deploy** and copy the **Web app URL** (it ends in `/exec`). That is `APPS_SCRIPT_URL`.
-5. **Connect the website.** Add both values in Vercel (and `.env.local`), then redeploy.
+5. **Connect the website.** Add both values in Netlify (and `.env.local`), then redeploy.
 6. **Optional:** to copy the associate consultant on Children and family bookings, put their email in `ASSOCIATE_EMAIL` at the top of the script.
 
 **After any change to Code.gs:**

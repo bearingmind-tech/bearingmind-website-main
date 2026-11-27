@@ -69,6 +69,7 @@ export type HomeContent = {
   hero: {
     heading: string;
     lede: string;
+    tagline: string;
     primaryCta: string;
     secondaryCta: string;
     compassBreathe: string;
@@ -147,6 +148,8 @@ export type SessionType = {
   label: string;
   short: string;
   forWho: string;
+  /** Hide the "for" line and the subtitle on the Sessions card (still used elsewhere). */
+  hideCardIntro?: boolean;
   modeText: string;
   slotsText: string;
   note: string;

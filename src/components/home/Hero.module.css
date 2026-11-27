@@ -31,6 +31,14 @@
   max-width: 34em;
 }
 
+.tagline {
+  margin: 28px 0 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  color: var(--head);
+  max-width: none;
+}
+
 .actions {
   display: flex;
   gap: 14px;

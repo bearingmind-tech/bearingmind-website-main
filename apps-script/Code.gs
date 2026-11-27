@@ -37,7 +37,7 @@ const CONFIG = {
   ADDRESS: '2 Rose Lane, Richmond Town, Bengaluru 560025',
   PHONE: '+91 94822 23786',
   WHATSAPP: 'https://wa.me/919482223786',
-  SITE: 'https://www.bearingmind.com',
+  SITE: 'https://bearingmind.com',
   // One entry per plan (the website's plan code). Each plan has its own sheet tab and calendar.
   // Calendar: 'primary' is your main Google Calendar; paste another calendar's ID to keep a plan separate.
   PLANS: {
@@ -390,7 +390,7 @@ function setup() {
   // Checks calendar access now, not on the first booking
   Object.keys(CONFIG.PLANS).forEach(key => Calendar.Calendars.get(CONFIG.PLANS[key].calendar));
 
-  console.log('Setup complete.\n\nCopy this secret into Vercel as APPS_SCRIPT_SECRET:\n\n' + secret + '\n');
+  console.log('Setup complete.\n\nCopy this secret into Netlify as APPS_SCRIPT_SECRET:\n\n' + secret + '\n');
 }
 
 /* Compares secrets in constant time, so timing cannot reveal them. */

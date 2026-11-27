@@ -20,14 +20,20 @@ export function Approach({ c, withHead = true, more = false }: Props) {
 
         <div className={`${styles.areas} ${withHead ? "" : styles.flush}`}>
           {c.areas.map((area) => (
-            <article key={area.title} className={styles.area}>
-              <h3>{area.title}</h3>
+            <details key={area.title} className={styles.area}>
+              <summary className={styles.summary}>
+                <span className={styles.summaryText}>
+                  <h3>{area.title}</h3>
+                  <span className={styles.count}>{area.items.length} topics</span>
+                </span>
+                <span className={styles.toggle} aria-hidden="true" />
+              </summary>
               <ul>
                 {area.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </article>
+            </details>
           ))}
         </div>
 

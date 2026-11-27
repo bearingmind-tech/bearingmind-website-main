@@ -7,7 +7,7 @@ Everything runs on free plans. The only running cost is the domain.
 ## How it fits together
 
 ```
-Visitor ── bearingmind.com (Next.js on Vercel)
+Visitor ── bearingmind.com (Next.js on Netlify)
               │  pages read content from ──► Sanity CMS (free plan, Studio at /studio)
               │  /api/* routes (server only)
               ├──► Razorpay  (create order, verify payment, webhook)
@@ -40,23 +40,24 @@ The site works with no keys at all:
    - Create a free project at sanity.io/manage, dataset `production`.
    - Add the project ID to `.env.local`.
    - Create an *Editor* API token, put it in `SANITY_WRITE_TOKEN`, then run `npm run seed`. This copies all current content and the portrait into Sanity.
-   - Under API → CORS origins, add `http://localhost:3000` and `https://www.bearingmind.com`, each with credentials allowed.
+   - Under API → CORS origins, add `http://localhost:3000` and `https://bearingmind.com`, each with credentials allowed.
 3. **Booking backend:** follow `apps-script/SETUP.md`. You get `APPS_SCRIPT_URL` and `APPS_SCRIPT_SECRET`.
-4. **Vercel:**
-   - Import the repo.
-   - Add the env vars from `.env.example`, except `SANITY_WRITE_TOKEN`.
+4. **Netlify:**
+   - Import the repo from GitHub (every push to `main` deploys).
+   - Under Project configuration → Environment variables, add the env vars from `.env.example`, except `SANITY_WRITE_TOKEN`.
    - Deploy.
-   - Add the domains `bearingmind.com` and `www.bearingmind.com`, with www as the primary.
+   - Add the domain `bearingmind.com` as primary; `www.bearingmind.com` redirects to it.
+   - DNS stays at Wix: an A record `@` → `75.2.60.5` and a CNAME `www` → `bearingmind-website-main.netlify.app`. Leave the Google MX and TXT records alone.
 5. **Sanity webhook:** in sanity.io/manage → API → Webhooks, add:
-   - URL `https://www.bearingmind.com/api/revalidate`
+   - URL `https://bearingmind.com/api/revalidate`
    - Trigger on create, update and delete
    - Secret the same as `SANITY_REVALIDATE_SECRET`
 
    Published edits then go live in seconds.
 6. **Email authentication:** in Google Workspace admin, turn on DKIM. At the domain registrar, add SPF (`v=spf1 include:_spf.google.com ~all`) and DMARC (`v=DMARC1; p=none; rua=mailto:contact@bearingmind.com`). Without these, booking emails can land in spam.
 7. **Razorpay (once the account is approved):**
-   - Create live API keys and add `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` in Vercel.
-   - Under Settings → Webhooks, add `https://www.bearingmind.com/api/webhooks/razorpay` with events `payment.captured` and `order.paid`, and a secret that matches `RAZORPAY_WEBHOOK_SECRET`.
+   - Create live API keys and add `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` in Netlify.
+   - Under Settings → Webhooks, add `https://bearingmind.com/api/webhooks/razorpay` with events `payment.captured` and `order.paid`, and a secret that matches `RAZORPAY_WEBHOOK_SECRET`.
    - Redeploy. The payment step switches to Razorpay automatically.
    - Test first with test-mode keys.
 8. **Search:**

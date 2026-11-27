@@ -10,7 +10,7 @@ export function Faq({ c, withHead = true, more = false }: Props) {
       <div className={`wrap ${styles.grid}`}>
         <div>
           {withHead ? (
-            <SectionHead id="faq-h" title={c.heading} sub={c.subheading} more={more ? { href: "/faq", label: "All questions" } : undefined} />
+            <SectionHead id="faq-h" title={c.heading} sub={c.subheading} more={more ? { href: "/faq", label: "All FAQs" } : undefined} />
           ) : (
             <h2 id="faq-h" className="sr-only">{c.heading}</h2>
           )}

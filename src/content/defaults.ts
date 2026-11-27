@@ -8,7 +8,7 @@ import type { BookingContent, HomeContent, SiteSettings } from "./types";
 export const siteDefaults: SiteSettings = {
   practiceName: "BearingMind",
   legalName: "BearingMind Health Services",
-  siteUrl: "https://www.bearingmind.com",
+  siteUrl: "https://bearingmind.com",
   seoTitle: "CBT Counselling & Executive Coaching, Bangalore | BearingMind",
   seoDescription:
     "CBT-based counselling and coaching for leaders, professionals, couples and families, plus mental health training for organisations. Richmond Town, Bangalore.",
@@ -51,7 +51,7 @@ export const siteDefaults: SiteSettings = {
     name: "M H Sharieff",
     jobTitle: "Chief Counselling Psychologist and Executive Mentor",
     credentials: [
-      "PhD in Human Resources",
+      "Ph.D. in Human Resources",
       "MBA",
       "Bachelor of Engineering",
       "Master's in Counselling Psychology",
@@ -76,35 +76,36 @@ export const siteDefaults: SiteSettings = {
 
 export const homeDefaults: HomeContent = {
   hero: {
-    heading: "A calmer mind makes better decisions",
+    heading: "A calmer mind makes better decisions ..",
     lede:
       "Structured, CBT-based counselling and coaching for leaders, professionals and their families, in Bangalore and online. For people who are doing well on paper, and want to feel as well as they look.",
+    tagline: ".. better Relations",
     primaryCta: "Book a session",
     secondaryCta: "How it works",
     compassBreathe: "Breathe.",
     compassCaption: "Find your bearing – your direction",
   },
   aiBand: {
-    line1: "No AI in sessions.",
+    line1: "No AI in your CBT sessions",
     line2Before: "In CBT, we use your ",
     line2Emphasis: "real",
-    line2After: " intelligence.",
+    line2After: " intelligence",
   },
   about: {
     heading: "About",
     role: "Chief Counselling Psychologist",
-    name: "M H Sharieff, PhD",
+    name: "M H Sharieff, Ph.D.",
     intro:
-      "Since 2017, mentoring senior executives at a multinational, and individuals, on professional and personal development.",
+      "Since 2017, mentoring and coaching senior executives at a multinational, and individuals, on professional and personal development.",
     credentialsHeading: "Credentials",
     credentials: [
-      "PhD in Human Resources",
+      "Ph.D. in Human Resources",
       "Master's in Counselling Psychology",
       "Diploma in Community Mental Health, NIMHANS",
       "Certified Behaviour & Mentoring Analyst (CBMA)",
       "Member, American Psychological Association",
     ],
-    portraitAlt: "M H Sharieff, PhD, Chief Counselling Psychologist, BearingMind Health Services",
+    portraitAlt: "M H Sharieff, Ph.D., Chief Counselling Psychologist, BearingMind Health Services",
     registrations: [
       { label: "Udyam Registration (MSME)", value: "UDYAM-KR-03-0772965", badge: "/images/msme.png" },
       {
@@ -117,6 +118,7 @@ export const homeDefaults: HomeContent = {
         value: "ID: MHFA5065",
         badge: "/images/mhfa-accredited.png",
       },
+      { label: "American Psychological Association", value: "Member", badge: "/images/apa.svg" },
     ],
     disclaimer: "Our counselling and coaching is not a substitute for clinical therapy or psychiatric treatment.",
   },
@@ -156,11 +158,11 @@ export const homeDefaults: HomeContent = {
       },
     ],
     note:
-      "Our work is non-clinical and does not involve diagnosis or medication. For concerns such as depression, OCD or addiction, we work alongside your doctor or psychiatrist, or refer you to one. Children and teenagers are supported through BearingMind associates who specialise in them.",
+      "Our work is non-clinical and does not involve diagnosis or medication. We work alongside your doctor or psychiatrist, or refer you to a clinical psychologist. Children and teenagers are supported through BearingMind associates who are specialised in child therapy.",
   },
   organisations: {
     heading: "For organisations",
-    subheading: "Leadership mentoring, training and workshops.",
+    subheading: "Leadership mentoring, coaching, mental health training and wellness workshops",
     lede:
       "We understand work from both sides of the table: the employee's state of mind, the quiet slide into burnout, and management's expectations of performance.",
     credentials:
@@ -169,7 +171,7 @@ export const homeDefaults: HomeContent = {
       "Leadership mentoring and mental health training for companies, in line with WHO and ILO guidance that managers be trained to prevent workplace stress and support colleagues in distress.",
     offerings: [
       "Leadership and executive mentoring",
-      "Manager training: mental health at work",
+      "Employee training: mental health at work",
       "Workshops on stress, burnout and resilience",
       "MHFA workshops for companies",
     ],
@@ -184,9 +186,9 @@ export const homeDefaults: HomeContent = {
   how: {
     heading: "How it works",
     steps: [
-      { title: "Book and verify", text: "Choose a time and confirm your email. Pay in advance by UPI." },
-      { title: "A short intake form", text: "Confidential, before we meet, so your first hour is well spent." },
-      { title: "Your first session", text: "We agree on your goals, and review progress together by the fourth session." },
+      { title: "Book and verify", text: "Choose a time and confirm your email. Pay in advance through our online payment platform." },
+      { title: "A short intake form", text: "Confidential, before we meet, so your time is well spent." },
+      { title: "Your first session", text: "We agree on your goals, and review progress together." },
     ],
   },
   sessions: {
@@ -199,7 +201,7 @@ export const homeDefaults: HomeContent = {
       "For Public Figures sessions (conversational dining), you may also {call} or {whatsapp} directly on {phone}. A confidentiality agreement is available on request.",
   },
   proof: {
-    quote: "Experience is the only testimonial.",
+    quote: "Experience is the only testimonial",
     lines: [
       "See it. Experience it. Believe it.",
       "The only proof you need is your own results.",
@@ -232,7 +234,7 @@ export const homeDefaults: HomeContent = {
   },
   faq: {
     heading: "Questions",
-    subheading: "Short answers to what most people ask first.",
+    subheading: "FAQs",
     items: [
       { question: "Which languages do you counsel in?", answer: "English, Kannada and Hindi, with working Tamil." },
       {
@@ -310,9 +312,9 @@ export const bookingDefaults: BookingContent = {
         "Discreet one-to-one counselling and executive coaching for celebrities, HNIs and public figures, over a private dinner at a luxury hotel in Bangalore.",
       slug: "public-figures",
       label: "Public Figures",
-      short: "A private consultation over dinner at a luxury hotel",
-      forWho: "HNIs, celebrities and public figures",
-      modeText: "In person, over dinner at a luxury hotel in Bangalore. Dinner included.",
+      short: "A private consultation over dinner at a luxury hotel in Bangalore",
+      forWho: "HNIs, celebrities and business leaders",
+      modeText: "In person. Dinner included.",
       slotsText: "From 7:30 PM, Monday to Friday",
       note: "Hotel venue shared upon confirmation. A confidentiality agreement is available on request.",
       theme: "gold",
@@ -331,11 +333,12 @@ export const bookingDefaults: BookingContent = {
         "CBT-based online counselling on Google Meet for employed professionals: stress, burnout, work-life balance and career direction. Weekday slots, 4 to 6 PM.",
       slug: "employed-professionals",
       label: "Employed Professionals",
-      short: "Online on Google Meet, weekday afternoons",
-      forWho: "Salaried and working professionals",
-      modeText: "Online, on Google Meet",
+      short: "Counselling that fits around your working day",
+      hideCardIntro: true,
+      forWho: "People in full-time or part-time jobs",
+      modeText: "Online meet",
       slotsText: "4–5 PM or 5–6 PM, Monday to Friday",
-      note: "From anywhere. Your Google Meet link arrives with your confirmation.",
+      note: "Join from anywhere. Your meeting link arrives with your confirmation.",
       theme: "blue",
       times: ["16:00", "17:00"],
       days: [1, 2, 3, 4, 5],
@@ -348,11 +351,11 @@ export const bookingDefaults: BookingContent = {
         "Confidential CBT counselling for homemakers: stress, anxiety, relationships and time for yourself. Online on Google Meet or in person in Bangalore, Saturdays.",
       slug: "homemakers",
       label: "Homemakers",
-      short: "Online or in person, Saturday afternoons",
-      forWho: "Homemakers looking for time and space for themselves",
-      modeText: "Online on Google Meet, or in person",
-      slotsText: "2–3 PM, 3–4 PM or 4–5 PM, Saturday",
-      note: "A calm hour set aside just for you, online or face-to-face.",
+      short: "Support for the one who looks after everyone else",
+      forWho: "Anyone looking for time and space for themselves",
+      modeText: "Online meet or in person",
+      slotsText: "2–3 PM, 3–4 PM or 4–5 PM, Saturday only",
+      note: "A calm hour set aside just for you.",
       theme: "purple",
       times: ["14:00", "15:00", "16:00"],
       days: [6],
@@ -365,10 +368,10 @@ export const bookingDefaults: BookingContent = {
         "Counselling for children, with a parent or guardian, by a consultant specialised in children's counselling. Online or in person in Bangalore, Sunday mornings.",
       slug: "children",
       label: "Children with Parents",
-      short: "Online or in person, Sunday mornings",
-      forWho: "Children, together with a parent or guardian",
-      modeText: "Online on Google Meet, or in person",
-      slotsText: "8–9 AM, 9–10 AM or 10–11 AM, Sunday",
+      short: "Gentle, age-appropriate support",
+      forWho: "Children and teenagers",
+      modeText: "Online meet or in person",
+      slotsText: "8–9 AM, 9–10 AM or 10–11 AM, Sundays only",
       note: "With our associate consultant, specialised in children's counselling. A parent or guardian makes the booking.",
       theme: "pink",
       times: ["08:00", "09:00", "10:00"],
@@ -378,7 +381,7 @@ export const bookingDefaults: BookingContent = {
     },
   ],
   modes: [
-    { key: "meet", label: "Online", sub: "Google Meet video call", summary: "Online, Google Meet" },
+    { key: "meet", label: "Online", sub: "Online meet, video call", summary: "Online meet" },
     {
       key: "dining",
       label: "Private dinner",

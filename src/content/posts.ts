@@ -401,7 +401,7 @@ publicFigures.body = pt(publicFigures.slug, [
   "5. **What are your qualifications?** Look for formal training in counselling psychology and a clear, structured approach such as CBT.",
   "## How BearingMind works with public figures",
   "Sessions take place over a **private dinner at a luxury hotel in Bangalore**, from 7:30 PM, Monday to Friday (90 minutes, or 120 minutes for a couple), in a setting that looks like any other business evening. You may book for yourself or as a couple, under any name you prefer, and a confidentiality agreement is available before you meet. The hotel is shared privately once your reservation is confirmed.",
-  "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. Read more about [counselling for public figures](/counselling-for-public-figures), or [reserve an evening](/book/public-figures).",
+  "Sessions are led by M H Sharieff, Ph.D., Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. Read more about [counselling for public figures](/counselling-for-public-figures), or [reserve an evening](/book/public-figures).",
   "Our counselling and coaching is not a substitute for clinical therapy or psychiatric treatment.",
   `> ${CRISIS}`,
 ]);

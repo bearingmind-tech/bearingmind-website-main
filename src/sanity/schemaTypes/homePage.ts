@@ -28,6 +28,7 @@ export const homePage = defineType({
     section("hero", "Top of the page", [
       str("heading", "Headline"),
       txt("lede", "Intro paragraph", 3),
+      str("tagline", "Line under the intro paragraph (headline style)"),
       str("primaryCta", "Main button"),
       str("secondaryCta", "Second button"),
       str("compassBreathe", "Compass word"),

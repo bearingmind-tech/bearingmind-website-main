@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { Post, SiteSettings } from "@/content/types";
 import { breadcrumbSchema, faqSchema, postSchema } from "@/lib/seo";
 import { JsonLd } from "../seo/JsonLd";
-import { BookCta } from "../ui/BookCta";
 import { PostBody } from "./PostBody";
 import styles from "./Blog.module.css";
 
@@ -131,7 +130,6 @@ export function PostView({
           </section>
         )}
       </article>
-      <BookCta site={site} />
     </>
   );
 }

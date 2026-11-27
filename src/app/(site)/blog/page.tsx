@@ -1,4 +1,3 @@
-import { BookCta } from "@/components/ui/BookCta";
 import { PostIndex } from "@/components/blog/PostIndex";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPosts, getSite } from "@/lib/content";
@@ -18,7 +17,6 @@ export default async function Page() {
     <>
       <JsonLd data={breadcrumbSchema(site, [{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }])} />
       <PostIndex title="Blog" intro={`From ${site.legalName}.`} posts={posts} base="/blog" />
-      <BookCta site={site} />
     </>
   );
 }

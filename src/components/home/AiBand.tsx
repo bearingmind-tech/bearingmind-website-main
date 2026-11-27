@@ -12,11 +12,13 @@ export function AiBand({ c }: { c: HomeContent["aiBand"] }) {
         </span>
         <p className={styles.text}>
           <span className={styles.l1}>{c.line1}</span>
-          <span className={styles.l2}>
-            {c.line2Before}
-            <em>{c.line2Emphasis}</em>
-            {c.line2After}
-          </span>
+          {(c.line2Before || c.line2Emphasis || c.line2After) && (
+            <span className={styles.l2}>
+              {c.line2Before}
+              {c.line2Emphasis && <em>{c.line2Emphasis}</em>}
+              {c.line2After}
+            </span>
+          )}
         </p>
         <span className={`${styles.ornament} ${styles.flip}`} aria-hidden="true">
           <i />

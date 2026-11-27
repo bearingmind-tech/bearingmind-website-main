@@ -25,13 +25,13 @@ This site is built so that no visitor can change prices, bookings or content, an
 Most real-world break-ins come from stolen passwords, not code. Turn these on once and keep them on:
 
 1. **Google Workspace (contact@bearingmind.com):** 2-Step Verification, ideally with a passkey or authenticator app. This account owns the Sheet, the script, the calendar and the email.
-2. **Sanity:** log in with Google (so the 2-Step Verification above applies). Give the doctor the *Editor* role. Only you get *Administrator*. Under API → CORS origins, allow only `https://www.bearingmind.com` and `http://localhost:3000`. Never create a token for the website itself.
-3. **Vercel:** two-factor authentication on. Environment variables marked *Sensitive*. Only you as owner.
+2. **Sanity:** log in with Google (so the 2-Step Verification above applies). Give the doctor the *Editor* role. Only you get *Administrator*. Under API → CORS origins, allow only `https://bearingmind.com` and `http://localhost:3000`. Never create a token for the website itself.
+3. **Netlify:** two-factor authentication on. Secret environment variables marked *Contains secret values*. Only you as owner.
 4. **Razorpay:** two-factor login on. Webhook secret set. Use test keys until going live.
 5. **Domain registrar:** two-factor login and registrar lock on, so the domain cannot be moved.
 6. **GitHub:** two-factor on and the repository private.
 
-## Secrets (Vercel → Settings → Environment Variables)
+## Secrets (Netlify → Project configuration → Environment variables)
 
 | Name | What it is | Public? |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ Most real-world break-ins come from stolen passwords, not code. Turn these on on
 | `SANITY_REVALIDATE_SECRET` | Verifies Sanity's publish webhook | No |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` | Public identifiers, not secrets | Yes |
 
-To rotate a secret: change it in its service, update it in Vercel, and redeploy. For the Sheet secret, delete `SCRIPT_SECRET` in Apps Script → Project Settings → Script properties, run `setup` again, and copy the new value to Vercel.
+To rotate a secret: change it in its service, update it in Netlify, and redeploy. For the Sheet secret, delete `SCRIPT_SECRET` in Apps Script → Project Settings → Script properties, run `setup` again, and copy the new value to Netlify.
 
 ## Dependencies
 

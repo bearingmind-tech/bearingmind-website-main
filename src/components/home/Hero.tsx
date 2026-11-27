@@ -10,10 +10,8 @@ export function Hero({ c }: { c: HomeContent["hero"] }) {
         <div className={styles.text}>
           <h1 id="hero-h" className={styles.title}>{c.heading}</h1>
           <p className={styles.lede}>{c.lede}</p>
+          {c.tagline && <p className={`${styles.title} ${styles.tagline}`}>{c.tagline}</p>}
           <div className={styles.actions}>
-            <Link className="btn" href="/book">
-              {c.primaryCta}
-            </Link>
             <Link className="btn ghost" href="/#how">
               {c.secondaryCta}
             </Link>

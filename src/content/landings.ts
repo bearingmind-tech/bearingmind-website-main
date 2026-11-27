@@ -46,7 +46,7 @@ export const defaultLandings: LandingPage[] = [
       {
         heading: "Your counsellor",
         body: [
-          "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a PhD in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
+          "Sessions are led by M H Sharieff, Ph.D., Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a Ph.D. in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
         ],
       },
     ],
@@ -118,7 +118,7 @@ export const defaultLandings: LandingPage[] = [
       {
         heading: "Your counsellor",
         body: [
-          "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a PhD in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
+          "Sessions are led by M H Sharieff, Ph.D., Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a Ph.D. in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
         ],
       },
     ],
@@ -183,7 +183,7 @@ export const defaultLandings: LandingPage[] = [
       {
         heading: "Your counsellor",
         body: [
-          "Sessions are led by M H Sharieff, PhD, Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a PhD in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
+          "Sessions are led by M H Sharieff, Ph.D., Chief Counselling Psychologist, who has mentored senior executives at a multinational since 2017. He holds a Ph.D. in Human Resources, a Master's in Counselling Psychology and a Diploma in Community Mental Health from NIMHANS, and is a member of the American Psychological Association.",
         ],
       },
     ],

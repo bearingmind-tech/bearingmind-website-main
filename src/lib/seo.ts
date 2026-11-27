@@ -138,7 +138,7 @@ export function founderSchema(site: SiteSettings, home: HomeContent) {
     "@type": "Person",
     "@id": id.person,
     name: site.founder.name,
-    honorificSuffix: "PhD",
+    honorificSuffix: "Ph.D.",
     jobTitle: site.founder.jobTitle,
     worksFor: { "@id": id.org },
     image: home.about.portraitUrl || abs(site, "/images/m-h-sharieff.jpg"),

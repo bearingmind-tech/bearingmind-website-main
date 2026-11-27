@@ -2,6 +2,44 @@
   margin: 24px 0 0;
 }
 
+/* + when the form is closed, − when open: two bars, the vertical one folds flat */
+.sign {
+  position: relative;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  margin-right: -6px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: transform 0.35s ease;
+}
+
+.sign::before,
+.sign::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s ease;
+}
+
+.sign::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.signOpen {
+  transform: rotate(180deg);
+}
+
+.signOpen::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
 .form {
   margin-top: 24px;
   padding-top: 24px;

@@ -2,19 +2,30 @@
   padding: var(--section-y) 0;
 }
 
+.sectionFlush {
+  padding-top: clamp(40px, 5vw, 56px);
+}
+
+/* Sessions page: no section heading above the cards, so no extra gap */
+.flush.flush {
+  margin-top: 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-top: clamp(36px, 5vw, 56px);
+  row-gap: 28px;
   align-items: stretch;
 }
 
-/* Every card shares the same four rows (header, details, fees, note and button),
-   so prices and buttons line up across cards whatever the text length. */
+/* Every card shares three rows: its text, the session row, the button.
+   Text sits together at the top; session rows and buttons line up across cards. */
 .card {
+  position: relative;
   display: grid;
-  grid-row: span 4;
+  grid-row: span 3;
   grid-template-rows: subgrid;
   row-gap: 0;
   background: linear-gradient(180deg, var(--plan-soft), var(--white) 70%);
@@ -25,10 +36,17 @@
   box-shadow: var(--shadow-soft);
 }
 
+.body {
+  padding-bottom: 20px;
+}
+
+/* Sits on the card's top edge so it never pushes the title down */
 .tag {
-  display: inline-block;
-  margin: 0 0 12px;
-  padding: 4px 10px;
+  position: absolute;
+  top: -13px;
+  left: 20px;
+  margin: 0;
+  padding: 3px 10px;
   border-radius: var(--pill);
   background: var(--white);
   border: 1px solid var(--plan-line);
@@ -40,13 +58,19 @@
 }
 
 .top {
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--plan-line);
+  padding-bottom: 16px;
 }
 
 .name {
   font-size: 1.35rem;
   line-height: 1.2;
+  color: var(--plan-deep);
+}
+
+.forWho {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--plan-deep);
 }
 
@@ -78,11 +102,11 @@
 }
 
 .meta {
-  align-content: start;
   margin: 0;
-  padding: 18px 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--plan-line);
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .meta div {
@@ -111,7 +135,7 @@
 .fees {
   width: 100%;
   border-collapse: collapse;
-  align-self: start;
+  align-self: end;
   font-size: 0.93rem;
 }
 
@@ -170,14 +194,14 @@
 }
 
 .note {
-  margin: 18px 0 22px;
+  margin: 16px 0 0;
   font-size: 0.88rem;
   color: var(--muted);
 }
 
 .cta.cta {
   width: 100%;
-  margin-top: auto;
+  margin-top: 20px;
   background: var(--plan-deep);
   border-color: var(--plan-deep);
 }

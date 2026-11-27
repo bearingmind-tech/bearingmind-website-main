@@ -65,6 +65,7 @@ export const bookingSettings = defineType({
             str("label", "Name"),
             str("short", "Short description"),
             str("forWho", "For"),
+            defineField({ name: "hideCardIntro", title: "Hide \"For\" and short description on the Sessions card", type: "boolean" }),
             txt("modeText", "Mode", 2),
             str("slotsText", "Slots"),
             txt("note", "Note", 3),

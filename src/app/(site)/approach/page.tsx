@@ -1,4 +1,3 @@
-import { BookCta } from "@/components/ui/BookCta";
 import { Approach } from "@/components/home/Approach";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ResearchNotes } from "@/components/home/ResearchNotes";
@@ -35,7 +34,6 @@ export default async function ApproachPage() {
       <Approach c={home.approach} withHead={false} />
       <HowItWorks c={home.how} />
       <ResearchNotes c={home.research} />
-      <BookCta site={site} />
     </>
   );
 }

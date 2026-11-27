@@ -27,6 +27,10 @@ function allowedOrigins(): Set<string> {
   add(process.env.VERCEL_URL);
   add(process.env.VERCEL_BRANCH_URL);
   add(process.env.VERCEL_PROJECT_PRODUCTION_URL);
+  /* Netlify: primary address and this deploy's own addresses */
+  add(process.env.URL);
+  add(process.env.DEPLOY_PRIME_URL);
+  add(process.env.DEPLOY_URL);
   if (process.env.NODE_ENV !== "production" || process.env.ALLOW_LOCALHOST === "1") {
     ["http://localhost:3000", "http://localhost:3100", "http://127.0.0.1:3000"].forEach((o) => list.add(o));
   }

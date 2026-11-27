@@ -25,7 +25,8 @@
 }
 
 .strength {
-  margin: 36px 0 0;
+  margin: 36px auto 0;
+  text-align: center;
   padding-top: 28px;
   border-top: 1px solid var(--line);
   font-family: var(--serif);
@@ -35,4 +36,34 @@
   line-height: 1.35;
   color: var(--tide-deep);
   max-width: 30em;
+}
+
+/* One sentence per line, each appearing after the one before as the section scrolls in */
+.line {
+  display: block;
+}
+
+.line + .line {
+  margin-top: 6px;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .line {
+      animation: lineIn linear both;
+      animation-timeline: view();
+      animation-range: entry calc(10% + var(--i) * 18%) entry calc(45% + var(--i) * 18%);
+    }
+  }
+}
+
+@keyframes lineIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

@@ -1,4 +1,3 @@
-import { BookCta } from "@/components/ui/BookCta";
 import { Faq } from "@/components/home/Faq";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Sessions } from "@/components/home/Sessions";
@@ -28,7 +27,6 @@ export default async function SessionsPage() {
       <Sessions c={home.sessions} booking={booking} site={site} withHead={false} />
       <HowItWorks c={home.how} />
       <Faq c={home.faq} />
-      <BookCta site={site} />
     </>
   );
 }

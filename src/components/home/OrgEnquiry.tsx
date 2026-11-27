@@ -51,6 +51,7 @@ export function OrgEnquiry({ cta, initiallyOpen = false }: { cta: string; initia
       <p className={styles.cta}>
         <button className={open ? "btn ghost" : "btn"} type="button" aria-expanded={open} aria-controls="orgForm" onClick={() => setOpen((o) => !o)}>
           {cta}
+          <span className={`${styles.sign} ${open ? styles.signOpen : ""}`} aria-hidden="true" />
         </button>
       </p>
       <form id="orgForm" className={styles.form} hidden={!open} noValidate onSubmit={submit}>
