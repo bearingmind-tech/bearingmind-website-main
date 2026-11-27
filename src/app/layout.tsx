@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import { getSite } from "@/lib/content";
 import { isProduction } from "@/lib/env";
 import { cormorant, instrumentSans, newsreader } from "./fonts";
@@ -48,10 +47,9 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  /* Reading the request makes every page render per request, so Next.js can stamp
-     its scripts with the CSP nonce from src/proxy.ts. CMS data stays cached. */
-  await headers();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  /* Content pages are pre-rendered and served from the CDN. Booking pages opt in to
+     per-request rendering (and the CSP nonce) in src/app/(site)/book/layout.tsx. */
   return (
     <html lang="en-IN" className={`${newsreader.variable} ${instrumentSans.variable} ${cormorant.variable}`}>
       <body>{children}</body>

@@ -1,9 +1,11 @@
 /* Runs before every page request.
    1. URL normalisation: /About, /about/ and //about all permanently redirect (308)
       to /about in one hop, so Google only ever sees one canonical address.
-   2. Content Security Policy with a fresh random nonce per request: only scripts
-      that carry this request's nonce (Next.js's own) or that they load (Razorpay
-      checkout) may run. Injected scripts cannot. */
+   2. Booking pages (/book…) get a Content Security Policy with a fresh random nonce
+      per request: only scripts that carry this request's nonce (Next.js's own) or that
+      they load (Razorpay checkout) may run. Injected scripts cannot.
+      Content pages are pre-rendered and cached, so their policy is fixed and set in
+      next.config.ts (scripts from this site only; nothing from other origins). */
 import { NextResponse, type NextRequest } from "next/server";
 
 const isDev = process.env.NODE_ENV !== "production";
@@ -28,6 +30,8 @@ function buildCsp(nonce: string) {
   ].join("; ");
 }
 
+const isBooking = (path: string) => path === "/book" || path.startsWith("/book/");
+
 export function proxy(request: NextRequest) {
   const url = request.nextUrl;
   const original = url.pathname;
@@ -37,6 +41,8 @@ export function proxy(request: NextRequest) {
   if (clean !== original) {
     return NextResponse.redirect(new URL(clean + url.search, request.url), 308);
   }
+
+  if (!isBooking(clean)) return NextResponse.next();
 
   const nonce = btoa(crypto.randomUUID());
   const csp = buildCsp(nonce);

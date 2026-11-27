@@ -7,7 +7,28 @@ for (const key of Object.keys(process.env)) {
   }
 }
 
-/* The public site's Content Security Policy is set per request (with a nonce) in src/proxy.ts. */
+/* Content pages (pre-rendered, cached on the CDN): scripts from this site only. Next.js puts
+   its page data in small inline scripts, so inline is allowed here; nothing from other
+   origins can load. Booking pages (/book…) use a stricter per-request nonce policy set in
+   src/proxy.ts instead. */
+const dev = process.env.NODE_ENV !== "production";
+const siteCsp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://cdn.sanity.io",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "frame-src 'none'",
+  "media-src 'self'",
+  "worker-src 'self' blob:",
+  "manifest-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  ...(dev ? [] : ["upgrade-insecure-requests"]),
+].join("; ");
 
 /* Sanity Studio (behind Sanity's own login) needs to talk to Sanity's APIs. */
 const studioCsp = [
@@ -56,6 +77,11 @@ const nextConfig: NextConfig = {
       {
         source: "/((?!studio).*)",
         headers: [...common, { key: "X-Frame-Options", value: "DENY" }],
+      },
+      {
+        /* every page except Studio, the booking pages (nonce policy in the proxy) and the API */
+        source: "/((?!studio|book|api).*)",
+        headers: [{ key: "Content-Security-Policy", value: siteCsp }],
       },
       {
         source: "/studio/:path*",
