@@ -786,12 +786,13 @@ function DateChips({ days, selected, onPick }: { days: { key: string; open: bool
             className={styles.date}
             disabled={!d.open}
             aria-pressed={selected === d.key}
-            aria-label={formatDate(d.key, { weekday: "long", day: "numeric", month: "long" }) + (d.open ? "" : ", unavailable")}
             onClick={() => onPick(d.key)}
           >
-            <small>{formatDate(d.key, { weekday: "short" })}</small>
-            <b>{Number(d.key.slice(8))}</b>
+            {/* The accessible name is the visible text ("Sat 28 Nov"), so voice control users can say what they see */}
+            <small>{formatDate(d.key, { weekday: "short" })}</small>{" "}
+            <b>{Number(d.key.slice(8))}</b>{" "}
             <span>{formatDate(d.key, { month: "short" })}</span>
+            {!d.open && <span className="sr-only">, unavailable</span>}
           </button>
         ))}
     </div>

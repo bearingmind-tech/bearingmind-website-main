@@ -57,7 +57,10 @@ export function ResearchNotes({ c }: { c: HomeContent["research"] }) {
               ‹
             </button>
             <button type="button" aria-label={paused ? "Play notes" : "Pause notes"} onClick={() => setPaused(!paused)}>
-              <span aria-hidden="true">{paused ? "▷" : "II"}</span>
+              {/* Icons, not letters, so the button's spoken name ("Pause notes") never conflicts with visible text */}
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+                {paused ? <path d="M3 1.5v9l7.5-4.5z" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /> : <path d="M3.5 1.5v9M8.5 1.5v9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />}
+              </svg>
             </button>
             <button type="button" aria-label="Next note" onClick={() => go(i + 1)}>
               ›
