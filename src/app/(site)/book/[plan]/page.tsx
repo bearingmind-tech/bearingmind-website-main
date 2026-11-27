@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: Props) {
   const [{ plan }, booking] = await Promise.all([params, getBooking()]);
   const t = findPlan(booking, plan);
   if (!t) return {};
-  return pageMeta(t.seoTitle || `${t.label} counselling in Bangalore`, t.seoDescription || `${t.short}. ${t.slotsText}. For ${t.forWho}.`, `/book/${t.slug}`);
+  /* Its own title, so it never duplicates the plan's landing page in search results */
+  return pageMeta(`Book a ${t.label} Session`, t.seoDescription || `${t.short}. ${t.slotsText}. For ${t.forWho}.`, `/book/${t.slug}`);
 }
 
 export default async function PlanBookingPage({ params }: Props) {
